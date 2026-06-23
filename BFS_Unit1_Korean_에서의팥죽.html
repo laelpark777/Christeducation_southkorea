@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>성경 음식 이야기 – 1과: 에서의 팥죽</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&family=Nanum+Myeongjo:wght@400;700&display=swap');
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Nanum Gothic', sans-serif;
+    background: #FFF8EE;
+    color: #3A2E22;
+    min-height: 100vh;
+  }
+
+  .page {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 32px 24px 60px;
+  }
+
+  .unit-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #C0392B;
+    color: #fff;
+    font-weight: 800;
+    font-size: 14px;
+    letter-spacing: 1px;
+    padding: 6px 16px;
+    border-radius: 999px;
+    margin-bottom: 20px;
+  }
+
+  .title-block { margin-bottom: 28px; }
+  .title-block h1 {
+    font-family: 'Nanum Myeongjo', serif;
+    font-size: 36px;
+    line-height: 1.2;
+    color: #C0392B;
+    font-weight: 700;
+  }
+  .title-block .subtitle {
+    font-size: 15px;
+    color: #7A6652;
+    margin-top: 6px;
+  }
+  .title-block .ref {
+    display: inline-block;
+    margin-top: 8px;
+    background: #FDE8C8;
+    border-left: 3px solid #E8A040;
+    padding: 6px 12px;
+    font-size: 13px;
+    color: #7A5020;
+    border-radius: 0 6px 6px 0;
+    font-style: italic;
+  }
+
+  .scene {
+    width: 100%;
+    height: 180px;
+    background: linear-gradient(135deg, #F9C07A 0%, #E8854A 60%, #C0392B 100%);
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 28px;
+    position: relative;
+    overflow: hidden;
+  }
+  .scene-emoji { font-size: 72px; filter: drop-shadow(0 4px 8px rgba(0,0,0,0.18)); }
+  .scene-label {
+    position: absolute;
+    bottom: 12px; right: 16px;
+    font-size: 12px;
+    color: rgba(255,255,255,0.85);
+    font-style: italic;
+  }
+
+  .story-card {
+    background: #fff;
+    border-radius: 16px;
+    padding: 24px 28px;
+    margin-bottom: 28px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+    border-top: 4px solid #C0392B;
+  }
+  .section-label {
+    font-weight: 800;
+    font-size: 13px;
+    letter-spacing: 1.5px;
+    color: #C0392B;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+  .story-card p {
+    font-size: 16px;
+    line-height: 2;
+    color: #3A2E22;
+  }
+  .story-card p + p { margin-top: 12px; }
+  .highlight {
+    background: #FDE8C8;
+    border-radius: 4px;
+    padding: 1px 5px;
+    font-weight: 700;
+    color: #A03010;
+  }
+
+  /* 발음 가이드 */
+  .pronunciation-box {
+    background: #F5F0FF;
+    border-left: 3px solid #9B59B6;
+    border-radius: 0 10px 10px 0;
+    padding: 14px 16px;
+    margin-top: 16px;
+    font-size: 14px;
+    color: #5A3A7A;
+    line-height: 1.8;
+  }
+  .pronunciation-box strong { color: #7B2D8B; }
+
+  .word-section { margin-bottom: 28px; }
+  .word-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    margin-top: 12px;
+  }
+  .word-card {
+    background: #fff;
+    border-radius: 12px;
+    padding: 14px 16px;
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    border: 1.5px solid #F0E0C8;
+  }
+  .word-emoji { font-size: 28px; flex-shrink: 0; line-height: 1; }
+  .word-info strong {
+    display: block;
+    font-size: 15px;
+    font-weight: 800;
+    color: #C0392B;
+  }
+  .word-info .korean { font-size: 13px; color: #3A2E22; font-weight: 700; }
+  .word-info span { font-size: 12px; color: #7A6652; line-height: 1.5; }
+
+  .divider {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 32px 0 24px;
+  }
+  .divider::before, .divider::after {
+    content: '';
+    flex: 1;
+    height: 1.5px;
+    background: #E8D8C0;
+  }
+  .divider span {
+    font-weight: 800;
+    font-size: 13px;
+    color: #B08060;
+    letter-spacing: 1px;
+    white-space: nowrap;
+  }
+
+  .exercise {
+    background: #fff;
+    border-radius: 16px;
+    padding: 24px 28px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+  }
+  .exercise-type {
+    display: inline-block;
+    background: #FDE8C8;
+    color: #A03010;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 3px 10px;
+    border-radius: 999px;
+    margin-bottom: 12px;
+  }
+  .exercise h3 {
+    font-size: 15px;
+    font-weight: 800;
+    margin-bottom: 16px;
+    color: #3A2E22;
+  }
+
+  .mc-question { margin-bottom: 20px; }
+  .mc-question p {
+    font-size: 15px;
+    font-weight: 700;
+    margin-bottom: 10px;
+    line-height: 1.6;
+  }
+  .options { display: flex; flex-direction: column; gap: 8px; }
+  .option {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 14px;
+    border: 2px solid #E8D8C0;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: border-color 0.15s, background 0.15s;
+    font-size: 14px;
+    background: #FDFAF6;
+    user-select: none;
+  }
+  .option:hover { border-color: #E8A040; background: #FEF4E4; }
+  .option.selected { border-color: #C0392B; background: #FDE8C8; }
+  .option.correct { border-color: #27AE60; background: #E8F8EE; }
+  .option.wrong { border-color: #C0392B; background: #FDE8C8; }
+  .option-letter {
+    width: 24px; height: 24px;
+    border-radius: 50%;
+    background: #E8D8C0;
+    color: #7A5020;
+    font-weight: 800;
+    font-size: 12px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .option.selected .option-letter { background: #C0392B; color: #fff; }
+  .option.correct .option-letter { background: #27AE60; color: #fff; }
+
+  .blank-sentence {
+    font-size: 16px;
+    line-height: 2.4;
+    margin-bottom: 12px;
+  }
+  .blank {
+    display: inline-block;
+    min-width: 100px;
+    border-bottom: 2.5px solid #C0392B;
+    margin: 0 4px;
+    text-align: center;
+    padding: 0 8px;
+    font-weight: 700;
+    color: #C0392B;
+    cursor: pointer;
+  }
+  .word-bank {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 12px;
+  }
+  .word-chip {
+    background: #FDE8C8;
+    border: 1.5px dashed #E8A040;
+    color: #A03010;
+    font-size: 13px;
+    font-weight: 700;
+    padding: 5px 14px;
+    border-radius: 999px;
+    cursor: pointer;
+    transition: background 0.15s;
+  }
+  .word-chip:hover { background: #FAD4A0; }
+  .word-chip.used { opacity: 0.35; pointer-events: none; text-decoration: line-through; }
+
+  .check-btn {
+    margin-top: 20px;
+    background: #C0392B;
+    color: #fff;
+    border: none;
+    font-family: 'Nanum Gothic', sans-serif;
+    font-weight: 800;
+    font-size: 16px;
+    padding: 12px 32px;
+    border-radius: 999px;
+    cursor: pointer;
+    transition: background 0.15s, transform 0.1s;
+    display: block;
+  }
+  .check-btn:hover { background: #A03020; transform: translateY(-1px); }
+
+  .result-box {
+    margin-top: 16px;
+    padding: 12px 16px;
+    border-radius: 10px;
+    font-weight: 700;
+    font-size: 15px;
+    display: none;
+  }
+  .result-box.show { display: block; }
+  .result-box.good { background: #E8F8EE; color: #1A7040; }
+  .result-box.retry { background: #FDE8C8; color: #A03010; }
+
+  /* 쓰기 연습 */
+  .writing-area {
+    width: 100%;
+    border: 2px solid #E8D8C0;
+    border-radius: 10px;
+    padding: 12px;
+    font-family: 'Nanum Gothic', sans-serif;
+    font-size: 15px;
+    line-height: 1.8;
+    resize: vertical;
+    background: #FDFAF6;
+    color: #3A2E22;
+    min-height: 80px;
+    margin-top: 8px;
+  }
+  .writing-area:focus { outline: none; border-color: #C0392B; }
+
+  .think {
+    background: linear-gradient(135deg, #FFF3DC, #FDE8C8);
+    border-left: 4px solid #E8A040;
+    border-radius: 0 12px 12px 0;
+    padding: 18px 20px;
+    margin-top: 28px;
+    font-size: 15px;
+    line-height: 1.9;
+    color: #5A3A10;
+  }
+  .think strong { display: block; margin-bottom: 6px; font-size: 14px; color: #A07030; }
+
+  .footer {
+    text-align: center;
+    margin-top: 48px;
+    font-size: 12px;
+    color: #B09070;
+    line-height: 1.8;
+  }
+
+  @media (max-width: 480px) {
+    .word-grid { grid-template-columns: 1fr; }
+    .title-block h1 { font-size: 28px; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="unit-badge">🍲 1과</div>
+
+  <div class="title-block">
+    <h1>에서의 팥죽</h1>
+    <p class="subtitle">수프 한 그릇이 모든 것을 바꿨어요</p>
+    <span class="ref">창세기 25장 29~34절</span>
+  </div>
+
+  <div class="scene">
+    <span class="scene-emoji">🍲</span>
+    <span class="scene-label">아주 오래전, 야곱의 집…</span>
+  </div>
+
+  <!-- 이야기 -->
+  <div class="story-card">
+    <div class="section-label">📖 이야기를 읽어요</div>
+    <p>
+      어느 날, 야곱이 <span class="highlight">팥죽</span>을 끓이고 있었어요.
+      팥죽은 빨간색이고 뜨거웠어요. 냄새도 정말 맛있었어요.
+    </p>
+    <p>
+      형 에서가 들판에서 일을 하다가 집에 돌아왔어요.
+      에서는 <span class="highlight">많이 피곤하고 배가 고팠어요</span>.
+      에서가 말했어요. "저 빨간 죽 좀 줘! 너무 배고파!"
+    </p>
+    <p>
+      야곱이 말했어요. "줄게. 그런데 먼저 네 <span class="highlight">장자권</span>을 나에게 줘."
+    </p>
+    <p>
+      에서가 말했어요. "나 배고파서 죽겠어! 장자권이 무슨 소용이야?"
+      그래서 에서는 빵과 팥죽을 먹었어요.
+      그리고 일어나서 나갔어요. 에서는 장자권을 더 이상 소중하게 여기지 않았어요.
+    </p>
+    <div class="pronunciation-box">
+      <strong>🔊 새 단어 발음</strong><br>
+      팥죽 [팓쭉] · 장자권 [장자꿘] · 피곤하다 [피고나다] · 소용 [소용]
+    </div>
+  </div>
+
+  <!-- 오늘의 단어 -->
+  <div class="word-section">
+    <div class="section-label">🍽️ 오늘의 음식 단어</div>
+    <div class="word-grid">
+      <div class="word-card">
+        <span class="word-emoji">🫘</span>
+        <div class="word-info">
+          <strong>팥 (pat)</strong>
+          <div class="korean">red bean</div>
+          <span>팥은 작고 빨간 콩이에요. 죽이나 빵에 넣어 먹어요.</span>
+        </div>
+      </div>
+      <div class="word-card">
+        <span class="word-emoji">🍲</span>
+        <div class="word-info">
+          <strong>죽 (juk)</strong>
+          <div class="korean">porridge / stew</div>
+          <span>쌀이나 콩으로 만든 부드러운 음식이에요.</span>
+        </div>
+      </div>
+      <div class="word-card">
+        <span class="word-emoji">🍞</span>
+        <div class="word-info">
+          <strong>빵 (ppang)</strong>
+          <div class="korean">bread</div>
+          <span>에서는 팥죽과 빵을 같이 먹었어요.</span>
+        </div>
+      </div>
+      <div class="word-card">
+        <span class="word-emoji">😋</span>
+        <div class="word-info">
+          <strong>배고프다</strong>
+          <div class="korean">to be hungry</div>
+          <span>에서는 정말 많이 배가 고팠어요!</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"><span>✏️ 연습 문제</span></div>
+
+  <!-- 문제 1: 객관식 -->
+  <div class="exercise" id="ex1">
+    <span class="exercise-type">객관식</span>
+    <h3>맞는 답을 고르세요.</h3>
+
+    <div class="mc-question">
+      <p>1. 야곱은 무엇을 끓이고 있었나요?</p>
+      <div class="options" data-answer="b">
+        <div class="option" onclick="pickOption(this)"><span class="option-letter">가</span> 생선국</div>
+        <div class="option" onclick="pickOption(this)"><span class="option-letter">나</span> 팥죽</div>
+        <div class="option" onclick="pickOption(this)"><span class="option-letter">다</span> 꿀빵</div>
+      </div>
+    </div>
+
+    <div class="mc-question">
+      <p>2. 에서는 왜 팥죽을 원했나요?</p>
+      <div class="options" data-answer="c">
+        <div class="option" onclick="pickOption(this)"><span class="option-letter">가</span> 그냥 맛보고 싶었어요.</div>
+        <div class="option" onclick="pickOption(this)"><span class="option-letter">나</span> 팥죽을 좋아해서요.</div>
+        <div class="option" onclick="pickOption(this)"><span class="option-letter">다</span> 너무 피곤하고 배가 고파서요.</div>
+      </div>
+    </div>
+
+    <div class="mc-question">
+      <p>3. 야곱은 무엇을 달라고 했나요?</p>
+      <div class="options" data-answer="a">
+        <div class="option" onclick="pickOption(this)"><span class="option-letter">가</span> 에서의 장자권</div>
+        <div class="option" onclick="pickOption(this)"><span class="option-letter">나</span> 가축</div>
+        <div class="option" onclick="pickOption(this)"><span class="option-letter">다</span> 팥 한 자루</div>
+      </div>
+    </div>
+
+    <button class="check-btn" onclick="checkMC()">정답 확인하기 ✔</button>
+    <div class="result-box" id="mc-result"></div>
+  </div>
+
+  <!-- 문제 2: 빈칸 채우기 -->
+  <div class="exercise" id="ex2">
+    <span class="exercise-type">빈칸 채우기</span>
+    <h3>아래 단어를 골라 문장을 완성하세요.</h3>
+
+    <div class="blank-sentence">
+      1. 야곱은 <span class="blank" id="b1" onclick="clearBlank('b1')"></span>을/를 끓이고 있었어요.
+    </div>
+    <div class="blank-sentence">
+      2. 에서는 들판에서 일을 하고 와서 <span class="blank" id="b2" onclick="clearBlank('b2')"></span>고팠어요.
+    </div>
+    <div class="blank-sentence">
+      3. 에서는 <span class="blank" id="b3" onclick="clearBlank('b3')"></span>을/를 팔았어요.
+    </div>
+    <div class="blank-sentence">
+      4. 팥죽의 색깔은 <span class="blank" id="b4" onclick="clearBlank('b4')"></span>이에요.
+    </div>
+
+    <div class="word-bank" id="wordBank">
+      <span class="word-chip" data-word="팥죽" onclick="fillFromBank(this)">팥죽</span>
+      <span class="word-chip" data-word="배가" onclick="fillFromBank(this)">배가</span>
+      <span class="word-chip" data-word="장자권" onclick="fillFromBank(this)">장자권</span>
+      <span class="word-chip" data-word="빨간색" onclick="fillFromBank(this)">빨간색</span>
+    </div>
+
+    <button class="check-btn" onclick="checkBlanks()">정답 확인하기 ✔</button>
+    <div class="result-box" id="blank-result"></div>
+  </div>
+
+  <!-- 문제 3: 쓰기 -->
+  <div class="exercise">
+    <span class="exercise-type">쓰기 연습</span>
+    <h3>다음 문장을 따라 써 보세요.</h3>
+    <p style="font-size:15px; margin-bottom:8px; color:#7A6652;">야곱이 팥죽을 끓이고 있었어요.</p>
+    <textarea class="writing-area" placeholder="여기에 써 보세요…"></textarea>
+    <p style="font-size:13px; margin-top:16px; color:#7A6652; font-weight:700;">나만의 문장 만들기</p>
+    <p style="font-size:14px; margin: 6px 0 4px; color:#3A2E22;">나는 배가 고플 때 ____________을/를 먹어요.</p>
+    <textarea class="writing-area" placeholder="예: 나는 배가 고플 때 라면을 먹어요." style="min-height:60px;"></textarea>
+  </div>
+
+  <!-- 생각해 봐요 -->
+  <div class="think">
+    <strong>💬 생각해 봐요</strong>
+    에서는 너무 배가 고파서 아주 중요한 것을 팥죽 한 그릇과 바꿔버렸어요.
+    여러분은 배가 고프거나 피곤할 때 급하게 결정한 적이 있나요?
+    에서는 어떻게 했으면 더 좋았을까요?
+  </div>
+
+  <div class="footer">
+    Word &amp; Faith Education · 성경 음식 이야기 · 1과<br>
+    성경 본문: 개역한글 1952 / WEB (World English Bible) — 공개 저작물(Public Domain)<br>
+    본 교재는 저작권 제한 없이 자유롭게 배포하실 수 있습니다.
+  </div>
+
+</div>
+
+<script>
+  function pickOption(el) {
+    const group = el.closest('.options');
+    group.querySelectorAll('.option').forEach(o => o.classList.remove('selected'));
+    el.classList.add('selected');
+  }
+
+  function checkMC() {
+    const questions = document.querySelectorAll('#ex1 .mc-question');
+    const answerMap = { 'a': 0, 'b': 1, 'c': 2 };
+    let correct = 0;
+    questions.forEach(q => {
+      const options = q.querySelectorAll('.option');
+      const correctIdx = answerMap[q.querySelector('.options').dataset.answer];
+      const selected = q.querySelector('.option.selected');
+      options.forEach((o, i) => {
+        o.classList.remove('correct', 'wrong');
+        if (i === correctIdx) o.classList.add('correct');
+      });
+      if (selected) {
+        const selectedIdx = Array.from(options).indexOf(selected);
+        if (selectedIdx === correctIdx) { correct++; selected.classList.add('correct'); }
+        else { selected.classList.add('wrong'); }
+      }
+    });
+    const box = document.getElementById('mc-result');
+    box.classList.add('show');
+    if (correct === 3) {
+      box.className = 'result-box show good';
+      box.textContent = '🎉 완벽해요! 3문제 모두 맞혔어요!';
+    } else {
+      box.className = 'result-box show retry';
+      box.textContent = `${correct}/3 맞혔어요. 초록색이 정답이에요. 다시 도전해 봐요!`;
+    }
+  }
+
+  const blankAnswers = { b1: '팥죽', b2: '배가', b3: '장자권', b4: '빨간색' };
+  const blankFilled = { b1: null, b2: null, b3: null, b4: null };
+
+  function fillFromBank(chip) {
+    const word = chip.dataset.word;
+    for (const [id, ans] of Object.entries(blankAnswers)) {
+      if (ans === word && blankFilled[id] === null) {
+        blankFilled[id] = word;
+        document.getElementById(id).textContent = word;
+        chip.classList.add('used');
+        return;
+      }
+    }
+  }
+
+  function clearBlank(id) {
+    if (blankFilled[id]) {
+      const word = blankFilled[id];
+      blankFilled[id] = null;
+      document.getElementById(id).textContent = '';
+      document.getElementById(id).style.color = '#C0392B';
+      document.getElementById(id).style.borderColor = '#C0392B';
+      document.querySelectorAll('.word-chip').forEach(c => {
+        if (c.dataset.word === word) c.classList.remove('used');
+      });
+    }
+  }
+
+  function checkBlanks() {
+    let correct = 0;
+    for (const [id, ans] of Object.entries(blankAnswers)) {
+      const el = document.getElementById(id);
+      if (blankFilled[id] === ans) {
+        correct++;
+        el.style.color = '#27AE60';
+        el.style.borderColor = '#27AE60';
+      } else {
+        el.style.color = '#C0392B';
+        el.style.borderColor = '#C0392B';
+      }
+    }
+    const box = document.getElementById('blank-result');
+    box.classList.add('show');
+    if (correct === 4) {
+      box.className = 'result-box show good';
+      box.textContent = '🎉 모두 정답! 단어를 잘 기억했어요!';
+    } else {
+      box.className = 'result-box show retry';
+      box.textContent = `${correct}/4 정답. 단어를 눌러서 다시 해 봐요!`;
+    }
+  }
+</script>
+</body>
+</html>

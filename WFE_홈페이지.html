@@ -1,0 +1,1579 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>그리스도 에듀케이션</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&display=swap');
+
+  :root {
+    --navy: #2A7A5A;
+    --blue: #3AAA7A;
+    --light: #F0FAF5;
+    --white: #ffffff;
+    --border: #C0E8D0;
+    --text: #1A3A2A;
+    --muted: #5A8A70;
+    --accent: #3AAA7A;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Nanum Gothic', sans-serif;
+    background: var(--white);
+    color: var(--text);
+    font-size: 15px;
+    line-height: 1.7;
+  }
+
+  /* ── NAV ── */
+  nav {
+    background: var(--navy);
+    padding: 0 32px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 56px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .nav-logo {
+    color: #fff;
+    font-weight: 800;
+    font-size: 16px;
+    letter-spacing: 0.3px;
+    text-decoration: none;
+  }
+  .nav-logo span { color: #A8E0C0; }
+  .nav-links { display: flex; gap: 4px; }
+  .nav-links a {
+    color: #C8EED8;
+    text-decoration: none;
+    font-size: 13px;
+    padding: 6px 14px;
+    border-radius: 6px;
+    transition: background 0.15s, color 0.15s;
+  }
+  .nav-links a:hover { background: rgba(255,255,255,0.15); color: #fff; }
+  .nav-links a.active { color: #fff; background: rgba(255,255,255,0.18); }
+
+  /* ── HERO ── */
+  .hero {
+    background: var(--navy);
+    color: #fff;
+    padding: 64px 32px 56px;
+    text-align: center;
+  }
+  .hero-eyebrow {
+    font-size: 12px;
+    letter-spacing: 2px;
+    color: #A8E0C0;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+  .hero h1 {
+    font-size: 30px;
+    font-weight: 800;
+    line-height: 1.3;
+    margin-bottom: 14px;
+  }
+  .hero p {
+    font-size: 15px;
+    color: #C8EED8;
+    max-width: 480px;
+    margin: 0 auto 28px;
+  }
+  .hero-btns { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
+  .btn {
+    display: inline-block;
+    padding: 11px 24px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    text-decoration: none;
+    border: none;
+    font-family: 'Nanum Gothic', sans-serif;
+    transition: opacity 0.15s, transform 0.1s;
+  }
+  .btn:hover { opacity: 0.88; transform: translateY(-1px); }
+  .btn-primary { background: var(--blue); color: #fff; }
+  .btn-outline { background: transparent; color: #fff; border: 1.5px solid rgba(255,255,255,0.35); }
+
+  /* ── SECTION WRAPPER ── */
+  .section { padding: 56px 32px; max-width: 800px; margin: 0 auto; }
+  .section-title {
+    font-size: 20px;
+    font-weight: 800;
+    color: var(--navy);
+    margin-bottom: 6px;
+  }
+  .section-sub {
+    font-size: 13px;
+    color: var(--muted);
+    margin-bottom: 32px;
+  }
+  .divider { border: none; border-top: 1px solid var(--border); margin: 0; }
+
+  /* ── LANG TABS ── */
+  .lang-tabs {
+    display: flex;
+    gap: 0;
+    margin-bottom: 28px;
+    border: 1.5px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+    width: fit-content;
+  }
+  .lang-tab {
+    padding: 9px 24px;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+    background: var(--white);
+    color: var(--muted);
+    border: none;
+    font-family: 'Nanum Gothic', sans-serif;
+    transition: background 0.15s, color 0.15s;
+  }
+  .lang-tab.active { background: var(--navy); color: #fff; }
+  .lang-tab:not(:last-child) { border-right: 1.5px solid var(--border); }
+
+  /* ── PROGRAM CARDS ── */
+  .program-panel { display: none; }
+  .program-panel.active { display: block; }
+  .program-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 16px;
+  }
+  .program-card {
+    border: 1.5px solid var(--border);
+    border-radius: 10px;
+    padding: 20px 20px 18px;
+    background: var(--white);
+  }
+  .program-card .icon { font-size: 24px; margin-bottom: 10px; }
+  .program-card h3 { font-size: 14px; font-weight: 800; margin-bottom: 6px; color: var(--navy); }
+  .program-card p { font-size: 13px; color: var(--muted); line-height: 1.6; }
+  .level-tag {
+    display: inline-block;
+    margin-top: 10px;
+    background: var(--light);
+    color: var(--blue);
+    font-size: 11px;
+    font-weight: 800;
+    padding: 3px 10px;
+    border-radius: 999px;
+  }
+
+  /* ── LIBRARY ── */
+  .lib-tabs {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+  }
+  .lib-tab {
+    padding: 6px 16px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 700;
+    cursor: pointer;
+    background: var(--light);
+    color: var(--muted);
+    border: none;
+    font-family: 'Nanum Gothic', sans-serif;
+    transition: background 0.15s, color 0.15s;
+  }
+  .lib-tab.active { background: var(--navy); color: #fff; }
+
+  .lib-panel { display: none; }
+  .lib-panel.active { display: block; }
+
+  .file-list { display: flex; flex-direction: column; gap: 10px; }
+  .file-item {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 14px 18px;
+    border: 1.5px solid var(--border);
+    border-radius: 8px;
+    background: var(--white);
+    text-decoration: none;
+    color: var(--text);
+    transition: border-color 0.15s, background 0.15s;
+  }
+  .file-item:hover { border-color: var(--blue); background: var(--light); }
+  .file-icon { font-size: 22px; flex-shrink: 0; }
+  .file-info { flex: 1; }
+  .file-info strong { display: block; font-size: 14px; font-weight: 700; }
+  .file-info span { font-size: 12px; color: var(--muted); }
+  .file-dl {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--blue);
+    white-space: nowrap;
+  }
+
+  .band-notice {
+    margin-top: 24px;
+    background: var(--light);
+    border-left: 3px solid var(--blue);
+    border-radius: 0 8px 8px 0;
+    padding: 14px 18px;
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.7;
+  }
+  .band-notice strong { color: var(--navy); }
+
+  /* ── CONTACT ── */
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+  }
+  .contact-info h3 { font-size: 15px; font-weight: 800; margin-bottom: 14px; }
+  .contact-info p { font-size: 13px; color: var(--muted); line-height: 1.9; }
+  .contact-info a { color: var(--blue); text-decoration: none; }
+
+  .contact-form { display: flex; flex-direction: column; gap: 12px; }
+  .form-row { display: flex; flex-direction: column; gap: 5px; }
+  .form-row label { font-size: 12px; font-weight: 700; color: var(--muted); }
+  .form-row input,
+  .form-row select,
+  .form-row textarea {
+    font-family: 'Nanum Gothic', sans-serif;
+    font-size: 14px;
+    padding: 10px 12px;
+    border: 1.5px solid var(--border);
+    border-radius: 6px;
+    background: var(--white);
+    color: var(--text);
+    transition: border-color 0.15s;
+    resize: vertical;
+  }
+  .form-row input:focus,
+  .form-row select:focus,
+  .form-row textarea:focus {
+    outline: none;
+    border-color: var(--blue);
+  }
+  .form-submit {
+    background: var(--navy);
+    color: #fff;
+    border: none;
+    font-family: 'Nanum Gothic', sans-serif;
+    font-weight: 800;
+    font-size: 14px;
+    padding: 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: opacity 0.15s;
+    margin-top: 4px;
+  }
+  .form-submit:hover { opacity: 0.85; }
+  .form-sent {
+    display: none;
+    background: #E8F4EE;
+    color: #1A6A40;
+    border-radius: 6px;
+    padding: 12px 16px;
+    font-size: 13px;
+    font-weight: 700;
+    text-align: center;
+  }
+
+  /* ── PROG TABS ── */
+  .prog-tab {
+    padding: 6px 14px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 700;
+    cursor: pointer;
+    background: var(--light);
+    color: var(--muted);
+    border: 1.5px solid var(--border);
+    font-family: 'Nanum Gothic', sans-serif;
+    transition: background 0.15s, color 0.15s;
+  }
+  .prog-tab.active { background: var(--navy); color: #fff; border-color: var(--navy); }
+  .prog-panel { display: none; }
+  .prog-panel.active { display: block; }
+
+  /* ── TESTIMONIALS ── */
+  .testimonial-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px,1fr)); gap: 20px; margin-top: 8px; }
+  .testimonial-card {
+    background: #fff;
+    border-radius: 14px;
+    padding: 22px 24px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+    border-left: 4px solid var(--blue);
+  }
+  .testimonial-card .quote { font-size: 15px; line-height: 1.8; color: var(--text); margin-bottom: 14px; font-style: italic; }
+  .testimonial-card .who { font-size: 12px; font-weight: 800; color: var(--muted); }
+  .testimonial-card .stars { color: #F0A020; font-size: 14px; margin-bottom: 8px; }
+
+  /* ── NOTICES ── */
+  .notice-tab {
+    padding: 6px 16px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 700;
+    cursor: pointer;
+    background: var(--light);
+    color: var(--muted);
+    border: none;
+    font-family: 'Nanum Gothic', sans-serif;
+    transition: background 0.15s, color 0.15s;
+  }
+  .notice-tab.active { background: var(--navy); color: #fff; }
+  .notice-tabs { display: flex; gap: 8px; margin-bottom: 20px; flex-wrap: wrap; }
+
+  .notice-item {
+    border: 1.5px solid var(--border);
+    border-radius: 8px;
+    margin-bottom: 8px;
+    overflow: hidden;
+    background: var(--white);
+  }
+  .notice-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 13px 16px;
+    cursor: pointer;
+    transition: background 0.12s;
+  }
+  .notice-header:hover { background: var(--light); }
+  .notice-cat {
+    font-size: 10px;
+    font-weight: 800;
+    padding: 2px 8px;
+    border-radius: 999px;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  .cat-all { background: #E0F5EC; color: #3AAA7A; }
+  .cat-schedule { background: #FFF0E0; color: #C06010; }
+  .cat-new { background: #E8F8EE; color: #1A7040; }
+  .notice-title { flex: 1; font-size: 14px; font-weight: 700; }
+  .notice-date { font-size: 12px; color: var(--muted); white-space: nowrap; }
+  .notice-arrow { font-size: 12px; color: var(--muted); flex-shrink: 0; }
+  .notice-body {
+    display: none;
+    padding: 0 16px;
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.8;
+    border-top: 1px solid var(--border);
+  }
+  .notice-body.open { display: block; padding: 14px 16px; }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--navy);
+    color: #5A8A70;
+    text-align: center;
+    padding: 28px 24px;
+    font-size: 12px;
+    line-height: 1.9;
+  }
+  footer strong { color: #C8EED8; }
+
+  /* ── RESPONSIVE ── */
+  /* ── LANG SWITCHER ── */
+  .lang-switcher {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    margin-left: 16px;
+    background: rgba(255,255,255,0.12);
+    border-radius: 6px;
+    padding: 3px;
+    flex-shrink: 0;
+  }
+  .lang-switcher button {
+    background: transparent;
+    border: none;
+    color: #C8EED8;
+    font-family: 'Nanum Gothic', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background 0.15s, color 0.15s;
+    white-space: nowrap;
+  }
+  .lang-switcher button.active {
+    background: #fff;
+    color: var(--navy);
+  }
+
+  @media (max-width: 600px) {
+    nav { padding: 0 16px; }
+    .nav-links { display: none; }
+    .hero { padding: 48px 20px 40px; }
+    .hero h1 { font-size: 24px; }
+    .section { padding: 40px 20px; }
+    .contact-grid { grid-template-columns: 1fr; }
+  }
+
+  /* ── ADMIN ── */
+  .admin-btn {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    background: var(--navy);
+    color: #fff;
+    border: none;
+    border-radius: 999px;
+    padding: 10px 20px;
+    font-family: 'Nanum Gothic', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.18);
+    z-index: 999;
+    transition: opacity 0.15s;
+  }
+  .admin-btn:hover { opacity: 0.85; }
+
+  .admin-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.5);
+    z-index: 1000;
+    overflow-y: auto;
+    padding: 32px 16px;
+  }
+  .admin-overlay.open { display: flex; align-items: flex-start; justify-content: center; }
+  .admin-box {
+    background: #fff;
+    border-radius: 16px;
+    width: 100%;
+    max-width: 680px;
+    padding: 32px;
+    margin: auto;
+  }
+  .admin-box h2 { font-size: 18px; font-weight: 800; color: var(--navy); margin-bottom: 20px; }
+  .admin-section { margin-bottom: 28px; }
+  .admin-section h3 { font-size: 14px; font-weight: 800; color: var(--blue); margin-bottom: 12px; border-bottom: 1px solid var(--border); padding-bottom: 8px; }
+  .admin-row { display: flex; flex-direction: column; gap: 5px; margin-bottom: 10px; }
+  .admin-row label { font-size: 11px; font-weight: 800; color: var(--muted); text-transform: uppercase; letter-spacing: 0.5px; }
+  .admin-row input, .admin-row select, .admin-row textarea {
+    font-family: 'Nanum Gothic', sans-serif;
+    font-size: 14px;
+    padding: 9px 12px;
+    border: 1.5px solid var(--border);
+    border-radius: 6px;
+    background: #fff;
+    color: var(--text);
+    resize: vertical;
+  }
+  .admin-row input:focus, .admin-row select:focus, .admin-row textarea:focus {
+    outline: none; border-color: var(--blue);
+  }
+  .admin-btn-row { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 4px; }
+  .admin-action-btn {
+    padding: 9px 20px;
+    border-radius: 6px;
+    border: none;
+    font-family: 'Nanum Gothic', sans-serif;
+    font-size: 13px;
+    font-weight: 800;
+    cursor: pointer;
+    transition: opacity 0.15s;
+  }
+  .admin-action-btn:hover { opacity: 0.85; }
+  .btn-add { background: var(--navy); color: #fff; }
+  .btn-del { background: #FDE8C8; color: #A03010; }
+  .btn-close { background: var(--light); color: var(--muted); }
+  .admin-notice-list { display: flex; flex-direction: column; gap: 8px; margin-top: 8px; }
+  .admin-notice-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 12px;
+    border: 1.5px solid var(--border);
+    border-radius: 8px;
+    font-size: 13px;
+    background: var(--light);
+  }
+  .admin-notice-item span { flex: 1; }
+  .admin-notice-item button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 13px;
+    color: #A03010;
+    font-weight: 700;
+    padding: 2px 8px;
+  }
+  .admin-login { display: flex; flex-direction: column; gap: 12px; max-width: 280px; margin: 0 auto; text-align: center; }
+  .admin-login h2 { font-size: 18px; font-weight: 800; color: var(--navy); }
+  .admin-login input { padding: 10px 12px; border: 1.5px solid var(--border); border-radius: 6px; font-family: 'Nanum Gothic', sans-serif; font-size: 14px; }
+  .admin-login input:focus { outline: none; border-color: var(--blue); }
+  .admin-login button { background: var(--navy); color: #fff; border: none; padding: 11px; border-radius: 6px; font-family: 'Nanum Gothic', sans-serif; font-weight: 800; font-size: 14px; cursor: pointer; }
+  .admin-msg { font-size: 13px; color: #A03010; font-weight: 700; min-height: 20px; }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#">그리스도 <span>에듀케이션</span></a>
+  <div class="nav-links">
+    <a href="#programs" class="active" data-i18n="nav_programs">프로그램</a>
+    <a href="#notices" data-i18n="nav_notices">공지사항</a>
+    <a href="#library" data-i18n="nav_library">자료실</a>
+    <a href="#contact" data-i18n="nav_contact">문의하기</a>
+  </div>
+  <div class="lang-switcher">
+    <button class="active" onclick="setLangUI('ko')">🇰🇷 한국어</button>
+    <button onclick="setLangUI('en')">🇺🇸 English</button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-eyebrow" data-i18n="hero_eyebrow">말씀 위에 세워진 언어 교육</div>
+  <h1 data-i18n="hero_title">성경으로 배우는<br>영어 · 한국어</h1>
+  <p data-i18n="hero_sub">유치원부터 성인까지, 학생과 학부모·조부모 모두 함께 — 말씀을 통해 언어와 믿음을 키워가는 그리스도 에듀케이션입니다.</p>
+  <div class="hero-btns">
+    <a href="#programs" class="btn btn-primary" data-i18n="hero_btn1">프로그램 보기</a>
+    <a href="#contact" class="btn btn-outline" data-i18n="hero_btn2">상담 신청</a>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- PROGRAMS -->
+<div class="section" id="programs">
+  <div class="section-title" data-i18n="sec_programs">프로그램</div>
+  <div class="section-sub" data-i18n="sec_programs_sub">학습자의 언어와 수준에 맞는 과정을 선택하세요.</div>
+
+  <div class="lang-tabs">
+    <button class="lang-tab active" onclick="switchLang('en')">🇺🇸 영어 학습 (Korean → English)</button>
+    <button class="lang-tab" onclick="switchLang('ko')">🇰🇷 한국어 학습 (English → Korean)</button>
+  </div>
+
+  <!-- 영어 프로그램 -->
+  <div class="program-panel active" id="panel-en">
+
+    <!-- 대상 안내 -->
+    <p data-i18n="en_intro" style="font-size:13px; color:var(--muted); margin-bottom:20px; line-height:1.8; background:var(--light); padding:12px 16px; border-radius:8px;">
+      유치원생부터 중·고등학생, 성인 일반인까지 — <strong>학생과 학부모·조부모님도 함께 참여</strong>하실 수 있습니다.<br>
+      문법 · 리딩 · 라이팅 · 생활영어 · 논리사고력 · 내신대비까지 성경 말씀으로 함께 배워요.
+    </p>
+
+    <!-- 프로그램 서브탭 -->
+    <div class="prog-tabs" style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:20px;">
+      <button class="prog-tab active" onclick="switchProg('phonics',this)" data-i18n="pt_phonics">🔤 Phonics</button>
+      <button class="prog-tab" onclick="switchProg('reading',this)" data-i18n="pt_reading">📖 Reading</button>
+      <button class="prog-tab" onclick="switchProg('writing',this)" data-i18n="pt_writing">✍️ Writing</button>
+      <button class="prog-tab" onclick="switchProg('logic',this)" data-i18n="pt_logic">🧠 Logic</button>
+      <button class="prog-tab" onclick="switchProg('everyday',this)" data-i18n="pt_everyday">💬 Everyday</button>
+      <button class="prog-tab" onclick="switchProg('media',this)" data-i18n="pt_media">🎬 Media</button>
+    </div>
+
+    <!-- Phonics -->
+    <div class="prog-panel active" id="prog-phonics">
+      <div class="program-grid">
+        <div class="program-card">
+          <div class="icon">🔤</div>
+          <h3>Phonics (파닉스)</h3>
+          <p data-i18n="ph_p1">알파벳과 소리의 관계를 성경 단어로 익혀요. 발음과 읽기의 첫걸음.</p>
+          <span class="level-tag" data-i18n="ph_l1">유치원 ~ 초1</span>
+        </div>
+        <div class="program-card">
+          <div class="icon">🎵</div>
+          <h3>Phonics Plus</h3>
+          <p data-i18n="ph_p2">파닉스 규칙을 익힌 후 성경 짧은 문장으로 읽기 확장. 발음 교정 포함.</p>
+          <span class="level-tag" data-i18n="ph_l2">초1 ~ 초2</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Reading -->
+    <div class="prog-panel" id="prog-reading">
+      <div class="program-grid">
+        <div class="program-card">
+          <div class="icon">📖</div>
+          <h3>Bible Food Stories</h3>
+          <p data-i18n="rd_p1">성경 음식 이야기로 읽기·어휘·문장을 자연스럽게 배우는 리딩 과정.</p>
+          <span class="level-tag" data-i18n="rd_l1">초1 ~ 중2</span>
+        </div>
+        <div class="program-card">
+          <div class="icon">📚</div>
+          <h3>Grammar Reading (Book A)</h3>
+          <p data-i18n="rd_p2">WEB 성경 예문으로 문법과 리딩을 함께. 약속처럼 자연스러운 문장 이해.</p>
+          <span class="level-tag" data-i18n="rd_l2">초3 ~ 중1</span>
+        </div>
+        <div class="program-card">
+          <div class="icon">🎯</div>
+          <h3>CSAT Reading</h3>
+          <p data-i18n="rd_p3">수능 지문 독해력을 성경 구문으로 키우는 집중 리딩 과정.</p>
+          <span class="level-tag" data-i18n="rd_l3">중2 ~ 고등</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Writing -->
+    <div class="prog-panel" id="prog-writing">
+      <div class="program-grid">
+        <div class="program-card">
+          <div class="icon">✍️</div>
+          <h3>Bible Writing (초급)</h3>
+          <p data-i18n="wr_p1">성경 문장을 따라 쓰며 영어 쓰기의 기초를 다져요. 문장 구조 자연스럽게 체득.</p>
+          <span class="level-tag" data-i18n="wr_l1">초2 ~ 초4</span>
+        </div>
+        <div class="program-card">
+          <div class="icon">📝</div>
+          <h3>Paragraph Writing</h3>
+          <p data-i18n="wr_p2">성경 주제로 나만의 단락을 써요. 논리적 글쓰기 훈련.</p>
+          <span class="level-tag" data-i18n="wr_l2">초5 ~ 중2</span>
+        </div>
+        <div class="program-card">
+          <div class="icon">🎓</div>
+          <h3>Essay & 내신 Writing</h3>
+          <p data-i18n="wr_p3">내신 서술형부터 에세이까지. 성경 예문으로 탄탄한 쓰기 실력.</p>
+          <span class="level-tag" data-i18n="wr_l3">중1 ~ 고등</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Logic -->
+    <div class="prog-panel" id="prog-logic">
+      <div class="program-grid">
+        <div class="program-card">
+          <div class="icon">🧠</div>
+          <h3>Bible Debate (토론)</h3>
+          <p data-i18n="lg_p1">성경 주제로 영어 토론. 논리적 사고력과 말하기를 동시에 키워요.</p>
+          <span class="level-tag" data-i18n="lg_l1">초4 ~ 중3</span>
+        </div>
+        <div class="program-card">
+          <div class="icon">💡</div>
+          <h3>Critical Thinking</h3>
+          <p data-i18n="lg_p2">성경 이야기를 분석하고 생각을 영어로 표현하는 사고력 훈련.</p>
+          <span class="level-tag" data-i18n="lg_l2">초5 ~ 중2</span>
+        </div>
+        <div class="program-card">
+          <div class="icon">🎤</div>
+          <h3>Presentation</h3>
+          <p data-i18n="lg_p3">성경 주제 발표회 준비. 자신감 있게 영어로 발표하는 능력 키우기.</p>
+          <span class="level-tag" data-i18n="lg_l3">초3 ~ 중3</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Everyday -->
+    <div class="prog-panel" id="prog-everyday">
+      <div class="program-grid">
+        <div class="program-card">
+          <div class="icon">💬</div>
+          <h3>Everyday English (생활영어)</h3>
+          <p data-i18n="ev_p1">일상 표현을 성경 맥락으로 배워요. 학생부터 성인·학부모·조부모님까지 함께 가능.</p>
+          <span class="level-tag" data-i18n="ev_l1">전 연령 · 성인 환영</span>
+        </div>
+        <div class="program-card">
+          <div class="icon">🙏</div>
+          <h3>English Worship</h3>
+          <p data-i18n="ev_p2">영어 예배·설교 이해를 목표로. 영어 성경 읽기와 영어권 설교 듣기 훈련.</p>
+          <span class="level-tag" data-i18n="ev_l2">중급 이상 · 성인</span>
+        </div>
+        <div class="program-card">
+          <div class="icon">👨‍👩‍👧</div>
+          <h3>Family English</h3>
+          <p data-i18n="ev_p3">학생과 학부모·조부모님이 함께하는 가족 영어 과정. 생활 속 영어 습관 만들기.</p>
+          <span class="level-tag" data-i18n="ev_l3">가족 · 전 연령</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Media -->
+    <div class="prog-panel" id="prog-media">
+      <div class="program-grid">
+        <div class="program-card">
+          <div class="icon">🎬</div>
+          <h3>추천 미디어</h3>
+          <p data-i18n="md_p1">선생님이 선별한 영어 영상·콘텐츠를 정기적으로 소개해요. 자료실 미디어 탭에서 확인하세요.</p>
+          <span class="level-tag" data-i18n="md_l1">전 연령</span>
+        </div>
+        <div class="program-card">
+          <div class="icon">📺</div>
+          <h3>Media + Discussion</h3>
+          <p data-i18n="md_p2">추천 영상을 보고 수업 시간에 함께 이야기해요. 리딩·라이팅·토론으로 연결.</p>
+          <span class="level-tag" data-i18n="md_l2">초3 ~ 성인</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- 한국어 프로그램 -->
+  <div class="program-panel" id="panel-ko">
+    <p data-i18n="ko_intro" style="font-size:13px; color:var(--muted); margin-bottom:20px; line-height:1.8; background:var(--light); padding:12px 16px; border-radius:8px;">
+      한국어를 처음 접하는 <strong>외국인</strong>, 한국어가 조금 낯설어진 <strong>교포</strong>,<br>
+      한국 문화와 말씀에 관심 있는 <strong>성인</strong> — 모두 환영합니다 😊
+    </p>
+    <div class="program-grid">
+      <div class="program-card">
+        <div class="icon">🔤</div>
+        <h3 data-i18n="ko_p1_title">한글 입문</h3>
+        <p data-i18n="ko_p1_desc">한글 자모부터 차근차근. 성경 단어로 읽기와 발음을 자연스럽게 익혀요. 한국어가 처음인 분께 딱 맞아요.</p>
+        <span class="level-tag" data-i18n="ko_p1_level">🌱 외국인 · 완전 초보</span>
+      </div>
+      <div class="program-card">
+        <div class="icon">📖</div>
+        <h3>Bible Food Stories (KR)</h3>
+        <p data-i18n="ko_p2_desc">성경 속 음식 이야기로 한국어 어휘와 문장을 배워요. 재미있게 읽다 보면 자연스럽게 실력이 늘어요.</p>
+        <span class="level-tag" data-i18n="ko_p2_level">🌿 외국인 · 교포 · 초급</span>
+      </div>
+      <div class="program-card">
+        <div class="icon">📝</div>
+        <h3>Korean Grammar (Book B)</h3>
+        <p data-i18n="ko_p3_desc">성경 예문으로 배우는 한국어 문법 130패턴. 어법이 헷갈리는 교포분들께도 큰 도움이 돼요.</p>
+        <span class="level-tag" data-i18n="ko_p3_level">🌳 교포 · 중급</span>
+      </div>
+      <div class="program-card">
+        <div class="icon">🗣️</div>
+        <h3 data-i18n="ko_p4_title">회화 & 쓰기</h3>
+        <p data-i18n="ko_p4_desc">일상 표현부터 성경 문장까지, 실제로 말하고 쓰는 연습을 해요. 한국어로 더 깊이 소통하고 싶은 분께 추천해요.</p>
+        <span class="level-tag" data-i18n="ko_p4_level">🌲 성인 · 중급 이상</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- NOTICES -->
+<div class="section" id="notices">
+  <div class="section-title" data-i18n="sec_notices">공지사항</div>
+  <div class="section-sub" data-i18n="sec_notices_sub">수업 일정, 새 교재, 토론회·발표회 소식을 확인하세요.</div>
+
+  <div class="notice-tabs">
+    <button class="notice-tab active" onclick="switchNotice('전체공지', this)" data-i18n="ntab_all">📢 전체</button>
+    <button class="notice-tab" onclick="switchNotice('수업일정', this)" data-i18n="ntab_schedule">📅 수업 일정</button>
+    <button class="notice-tab" onclick="switchNotice('새교재', this)" data-i18n="ntab_material">📚 새 교재</button>
+    <button class="notice-tab" onclick="switchNotice('토론회', this)" data-i18n="ntab_debate">🗣️ 토론회</button>
+    <button class="notice-tab" onclick="switchNotice('발표회', this)" data-i18n="ntab_present">🎤 발표회</button>
+  </div>
+
+  <div id="notice-list"></div>
+</div>
+
+<hr class="divider">
+
+<!-- LIBRARY -->
+<div class="section" id="library">
+  <div class="section-title" data-i18n="sec_library">자료실</div>
+  <div class="section-sub" data-i18n="sec_library_sub">수업 교재 샘플과 학습 자료를 다운받으세요.</div>
+
+  <div class="lib-tabs">
+    <button class="lib-tab active" onclick="switchLib('all')" data-i18n="ltab_all">전체</button>
+    <button class="lib-tab" onclick="switchLib('en')" data-i18n="ltab_en">영어 학습</button>
+    <button class="lib-tab" onclick="switchLib('ko')" data-i18n="ltab_ko">한국어 학습</button>
+  </div>
+
+  <div class="lib-panel active" id="lib-all">
+    <div class="file-list">
+      <a class="file-item" href="BFS_Unit1_English_EsausRedStew.html" download>
+        <span class="file-icon">📄</span>
+        <div class="file-info">
+          <strong>Bible Food Stories Unit 1 – Esau's Red Stew</strong>
+          <span data-i18n="lib_f1_sub">영어 학습 · 초등 저학년 · 샘플 유닛</span>
+        </div>
+        <span class="file-dl" data-i18n="lib_dl">다운로드 ↓</span>
+      </a>
+      <a class="file-item" href="BFS_Unit1_Korean_에서의팥죽.html" download>
+        <span class="file-icon">📄</span>
+        <div class="file-info">
+          <strong data-i18n="lib_f2_title">성경 음식 이야기 1과 – 에서의 팥죽</strong>
+          <span data-i18n="lib_f2_sub">한국어 학습 · 초급 · 샘플 유닛</span>
+        </div>
+        <span class="file-dl" data-i18n="lib_dl">다운로드 ↓</span>
+      </a>
+      <a class="file-item" href="BFS_Curriculum_전체커리큘럼.html" download>
+        <span class="file-icon">📋</span>
+        <div class="file-info">
+          <strong data-i18n="lib_f3_title">Bible Food Stories 전체 커리큘럼</strong>
+          <span data-i18n="lib_f3_sub">유치원 ~ 중학교 2학년 · 40유닛 계획표</span>
+        </div>
+        <span class="file-dl" data-i18n="lib_dl">다운로드 ↓</span>
+      </a>
+    </div>
+    <div class="band-notice" data-i18n="band_notice">
+      <strong>📦 밴드(Band) 자료 백업 안내</strong><br>
+      기존 밴드에 올린 자료는 밴드 앱 → 파일 탭 → 각 파일 옆 <strong>···메뉴 → 저장</strong>으로 기기에 내려받을 수 있어요.
+      내려받은 파일은 이 자료실에 추가하거나 Google Drive에 보관하시면 영구 백업이 돼요.
+    </div>
+  </div>
+
+  <div class="lib-panel" id="lib-en">
+    <div class="file-list">
+      <a class="file-item" href="BFS_Unit1_English_EsausRedStew.html" download>
+        <span class="file-icon">📄</span>
+        <div class="file-info">
+          <strong>Bible Food Stories Unit 1 – Esau's Red Stew</strong>
+          <span data-i18n="lib_f1_sub">영어 학습 · 초등 저학년 · 샘플 유닛</span>
+        </div>
+        <span class="file-dl" data-i18n="lib_dl">다운로드 ↓</span>
+      </a>
+      <a class="file-item" href="BFS_Curriculum_전체커리큘럼.html" download>
+        <span class="file-icon">📋</span>
+        <div class="file-info">
+          <strong data-i18n="lib_f3_title">Bible Food Stories 전체 커리큘럼</strong>
+          <span data-i18n="lib_f3_sub">유치원 ~ 중학교 2학년 · 40유닛 계획표</span>
+        </div>
+        <span class="file-dl" data-i18n="lib_dl">다운로드 ↓</span>
+      </a>
+    </div>
+  </div>
+
+  <div class="lib-panel" id="lib-ko">
+    <div class="file-list">
+      <a class="file-item" href="BFS_Unit1_Korean_에서의팥죽.html" download>
+        <span class="file-icon">📄</span>
+        <div class="file-info">
+          <strong data-i18n="lib_f2_title">성경 음식 이야기 1과 – 에서의 팥죽</strong>
+          <span data-i18n="lib_f2_sub">한국어 학습 · 초급 · 샘플 유닛</span>
+        </div>
+        <span class="file-dl" data-i18n="lib_dl">다운로드 ↓</span>
+      </a>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- CONTACT -->
+<div class="section" id="contact">
+  <div class="section-title" data-i18n="sec_contact">문의하기</div>
+  <div class="section-sub" data-i18n="sec_contact_sub">수업 상담, 교재 문의 모두 환영합니다.</div>
+
+  <div class="contact-grid">
+    <div class="contact-info">
+      <h3>그리스도 에듀케이션</h3>
+      <p data-i18n="contact_info">
+        성경 말씀을 중심으로<br>
+        영어와 한국어를 가르치는<br>
+        소규모 믿음 기반 언어 교육 기관입니다.<br><br>
+        <strong data-i18n="contact_target_label">대상</strong> <span data-i18n="contact_target">유치원 ~ 중학교</span><br>
+        <strong data-i18n="contact_lang_label">언어</strong> 영어 / 한국어<br>
+        <strong data-i18n="contact_material_label">교재</strong> <span data-i18n="contact_material">자체 개발 성경 기반 교재</span><br><br>
+        <span data-i18n="contact_reply">문의 주시면 빠르게 답변드리겠습니다.</span>
+      </p>
+    </div>
+
+    <div class="contact-form">
+      <div class="form-row">
+        <label data-i18n="form_name">이름</label>
+        <input type="text" id="f-name" data-i18n-placeholder="form_name_ph" placeholder="홍길동">
+      </div>
+      <div class="form-row">
+        <label data-i18n="form_contact">연락처 (전화 또는 카카오ID)</label>
+        <input type="text" id="f-contact" placeholder="010-0000-0000">
+      </div>
+      <div class="form-row">
+        <label data-i18n="form_course">문의 과정</label>
+        <select id="f-course">
+          <option value="" data-i18n="form_select">선택해주세요</option>
+          <optgroup data-i18n-label="form_group_en" label="영어 학습">
+            <option>Phonics</option>
+            <option>Bible Food Stories (영어)</option>
+            <option>Grammar Book A</option>
+            <option>CSAT Syntax 특강</option>
+          </optgroup>
+          <optgroup data-i18n-label="form_group_ko" label="한국어 학습">
+            <option>한글 입문</option>
+            <option>Bible Food Stories (한국어)</option>
+            <option>Korean Grammar Book B</option>
+            <option>회화 & 쓰기</option>
+          </optgroup>
+          <option data-i18n="form_other">기타 / 잘 모르겠어요</option>
+        </select>
+      </div>
+      <div class="form-row">
+        <label data-i18n="form_grade">학생 학년</label>
+        <select id="f-grade">
+          <option value="" data-i18n="form_select">선택해주세요</option>
+          <option data-i18n="grade_pre">유치원</option>
+          <option data-i18n="grade_e1">초등 1~2학년</option>
+          <option data-i18n="grade_e2">초등 3~4학년</option>
+          <option data-i18n="grade_e3">초등 5~6학년</option>
+          <option data-i18n="grade_m1">중학교 1학년</option>
+          <option data-i18n="grade_m2">중학교 2학년</option>
+          <option data-i18n="grade_m3">중학교 3학년 이상</option>
+          <option data-i18n="grade_adult">성인</option>
+        </select>
+      </div>
+      <div class="form-row">
+        <label data-i18n="form_msg">문의 내용 (선택)</label>
+        <textarea id="f-msg" rows="3" data-i18n-placeholder="form_msg_ph" placeholder="궁금한 점을 자유롭게 적어주세요."></textarea>
+      </div>
+      <button class="form-submit" onclick="submitForm()" data-i18n="form_submit">문의 보내기</button>
+      <div class="form-sent" id="form-sent" data-i18n="form_sent">✅ 문의가 접수되었습니다. 곧 연락드리겠습니다!</div>
+    </div>
+  </div>
+</div>
+
+<!-- TESTIMONIALS -->
+<div style="background: var(--light); padding: 56px 32px;">
+  <div style="max-width:800px; margin:0 auto;">
+    <p style="font-size:12px; font-weight:800; letter-spacing:1.5px; color:var(--blue); margin-bottom:8px;" data-i18n="testi_label">💬 학습 후기</p>
+    <p style="font-size:20px; font-weight:800; color:var(--navy); margin-bottom:6px;" data-i18n="testi_title">말씀으로 자란 영어, 삶을 바꾸다</p>
+    <p style="font-size:13px; color:var(--muted); margin-bottom:28px;" data-i18n="testi_sub">실제 학습자와 학부모님의 이야기예요.</p>
+    <div class="testimonial-grid">
+      <div class="testimonial-card">
+        <div class="stars">★★★★★</div>
+        <p class="quote" data-i18n="testi_1_quote">"2~3년 꾸준히 배우고 나니, 영어 예배에서 설교가 다 들려요. 영어 성경도 스스로 읽고, 미국 목사님 유튜브도 찾아 듣게 됐어요. 문법·리딩·라이팅이 다 연결되더니 내신 성적도 자연스럽게 올랐어요. 어릴 때 쌓은 게 이렇게 이어질 줄 몰랐어요."</p>
+        <p class="who" data-i18n="testi_1_who">— 중학교 2학년 학생 학부모님</p>
+      </div>
+      <div class="testimonial-card">
+        <div class="stars">★★★★★</div>
+        <p class="quote" data-i18n="testi_2_quote">"처음엔 아이만 보내려고 했는데, 저도 같이 생활영어를 배우게 됐어요. 아이와 함께 영어로 짧은 대화를 나누고, 영어 성경 구절을 같이 읽는 게 이렇게 즐거울 줄 몰랐어요. 가족이 함께 자라는 느낌이에요."</p>
+        <p class="who" data-i18n="testi_2_who">— 초등학교 4학년 학부모님</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- BIBLE STATEMENT -->
+<div style="background:#F0FAF5; border-top: 2px solid #C0E8D0; padding: 40px 32px;">
+  <div style="max-width:800px; margin:0 auto;">
+    <p style="font-size:12px; font-weight:800; letter-spacing:1.5px; color:#3AAA7A; margin-bottom:12px;" data-i18n="bible_stmt_label">📖 사용 성경 및 교육 철학</p>
+    <p style="font-size:14px; font-weight:800; color:#1A3A2A; margin-bottom:10px; line-height:1.6;" data-i18n="bible_stmt_title">그리스도 에듀케이션은 교단과 교파에 관계없이, 오직 성경 말씀을 중심으로 언어를 가르칩니다.</p>
+    <p style="font-size:13px; color:#5A8A70; line-height:1.9;" data-i18n="bible_stmt_body">본 교재에서 사용하는 모든 성경 본문은 저작권이 소멸된 공개 자료(Public Domain)만을 사용합니다.<br>
+    · <strong style="color:#1A3A2A;">WEB (World English Bible)</strong> — 저작권 없음, 어느 교단에서도 자유롭게 사용 가능한 현대 영어 성경<br>
+    · <strong style="color:#1A3A2A;">KJV (King James Version, 1611)</strong> — 전 세계 기독교에서 공인된 퍼블릭 도메인 영어 성경<br>
+    · <strong style="color:#1A3A2A;">개역한글 (1952년판)</strong> — 저작권 만료, 한국 교회 전통 성경<br><br>
+    특정 교단의 신학적 입장을 지지하거나 배타적으로 따르지 않습니다. 성경 본문 그 자체를 언어 학습의 토대로 삼으며, 모든 믿음의 가정과 학습자를 환영합니다.</p>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <strong>그리스도 에듀케이션</strong><br>
+  <span data-i18n="footer_bible">성경 본문: WEB · KJV · 개역한글 1952 (Public Domain)</span><br>
+  <span data-i18n="footer_contact">교재 문의 및 수업 상담은 위 양식을 이용해 주세요.</span>
+</footer>
+
+<script>
+/* =====================================================
+   ✏️ 공지사항 수정 공간 — 여기만 바꾸시면 됩니다!
+   날짜 형식: "YYYY.MM.DD"
+   category: "전체공지" | "수업일정" | "새교재" | "토론회" | "발표회"
+   ===================================================== */
+const NOTICES = [
+  {
+    id: 1,
+    category: "전체공지",
+    date: "2026.06.22",
+    title: "그리스도 에듀케이션 홈페이지를 오픈했습니다 🎉",
+    body: "안녕하세요! 말씀 위에 세워진 언어 교육, 그리스도 에듀케이션 홈페이지에 오신 것을 환영합니다. 자료실에서 샘플 교재를 무료로 다운받으실 수 있습니다.",
+    title_en: "Christ Education Website is Now Open! 🎉",
+    body_en: "Welcome to Christ Education — language learning built on the Word of God. You can download free sample materials from our Resources section."
+  },
+  {
+    id: 2,
+    category: "수업일정",
+    date: "2026.06.22",
+    title: "7월 여름 특강 일정 안내",
+    body: "Bible Food Stories 여름 특강이 7월 둘째 주부터 시작됩니다. 영어반/한국어반 모두 모집 중이니 아래 문의하기를 통해 신청해 주세요.",
+    title_en: "July Summer Intensive Schedule",
+    body_en: "The Bible Food Stories Summer Intensive begins the second week of July. Both English and Korean classes are open for enrollment. Please use the Contact form below to apply."
+  },
+  {
+    id: 3,
+    category: "새교재",
+    date: "2026.06.22",
+    title: "Bible Food Stories Unit 1 샘플 공개",
+    body: "에서의 팥죽(창세기 25장)을 주제로 한 첫 번째 유닛 샘플이 자료실에 업로드되었습니다. 영어판과 한국어판 모두 무료로 다운받으실 수 있습니다.",
+    title_en: "Bible Food Stories Unit 1 Sample Now Available",
+    body_en: "Our first unit — Esau's Red Stew (Genesis 25) — is now available in the Resources section. Both English and Korean versions are free to download."
+  },
+  {
+    id: 4,
+    category: "토론회",
+    date: "2026.06.22",
+    title: "1회 영어 토론회 안내 — 주제: Should we share what we have?",
+    body: "오병이어 본문(요 6장)을 읽고 '나눔'을 주제로 영어 토론을 진행합니다. 일시와 장소는 추후 공지 예정입니다. 참가 신청은 문의하기를 이용해 주세요.",
+    title_en: "1st English Debate — Topic: Should we share what we have?",
+    body_en: "Based on the Feeding of the Five Thousand (John 6), students will debate the theme of sharing. Date and location to be announced. Please use the Contact form to register."
+  },
+  {
+    id: 5,
+    category: "발표회",
+    date: "2026.06.22",
+    title: "1회 한국어 발표회 안내 — 나의 이야기를 한국어로",
+    body: "한국어 학습자들이 자신의 이야기를 한국어로 발표하는 자리입니다. 짧은 스피치(1~2분)로 누구나 참여할 수 있어요. 일정은 추후 공지 예정입니다.",
+    title_en: "1st Korean Presentation Event — My Story in Korean",
+    body_en: "Korean learners will share their own stories in Korean. A short speech (1–2 minutes) is all it takes — everyone is welcome! Schedule to be announced."
+  }
+];
+/* ===================================================== */
+
+  /* ── LANG TABS ── */
+  function switchLang(lang) {
+    document.querySelectorAll('.lang-tab').forEach((t, i) => {
+      t.classList.toggle('active', (lang === 'en' && i === 0) || (lang === 'ko' && i === 1));
+    });
+    document.getElementById('panel-en').classList.toggle('active', lang === 'en');
+    document.getElementById('panel-ko').classList.toggle('active', lang === 'ko');
+  }
+
+  /* ── PROG TABS ── */
+  function switchProg(tab, el) {
+    document.querySelectorAll('.prog-tab').forEach(t => t.classList.remove('active'));
+    el.classList.add('active');
+    document.querySelectorAll('.prog-panel').forEach(p => p.classList.remove('active'));
+    document.getElementById('prog-' + tab).classList.add('active');
+  }
+
+  /* ── LIB TABS ── */
+  function switchLib(tab) {
+    document.querySelectorAll('.lib-tab').forEach(t => t.classList.remove('active'));
+    event.target.classList.add('active');
+    document.querySelectorAll('.lib-panel').forEach(p => p.classList.remove('active'));
+    document.getElementById('lib-' + tab).classList.add('active');
+  }
+
+  /* ── PROG TABS ── */
+  .prog-tab {
+    padding: 6px 14px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 700;
+    cursor: pointer;
+    background: var(--light);
+    color: var(--muted);
+    border: 1.5px solid var(--border);
+    font-family: 'Nanum Gothic', sans-serif;
+    transition: background 0.15s, color 0.15s;
+  }
+  .prog-tab.active { background: var(--navy); color: #fff; border-color: var(--navy); }
+  .prog-panel { display: none; }
+  .prog-panel.active { display: block; }
+
+  /* ── TESTIMONIALS ── */
+  .testimonial-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px,1fr)); gap: 20px; margin-top: 8px; }
+  .testimonial-card {
+    background: #fff;
+    border-radius: 14px;
+    padding: 22px 24px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+    border-left: 4px solid var(--blue);
+  }
+  .testimonial-card .quote { font-size: 15px; line-height: 1.8; color: var(--text); margin-bottom: 14px; font-style: italic; }
+  .testimonial-card .who { font-size: 12px; font-weight: 800; color: var(--muted); }
+  .testimonial-card .stars { color: #F0A020; font-size: 14px; margin-bottom: 8px; }
+
+  /* ── NOTICES ── */
+  function renderNotices(filter) {
+    const list = document.getElementById('notice-list');
+    const filtered = filter === '전체공지' ? NOTICES : NOTICES.filter(n => n.category === filter);
+    if (filtered.length === 0) {
+      list.innerHTML = `<p style="color:var(--muted);font-size:13px;padding:20px 0;">${I18N[currentUILang]?.no_notice || '등록된 공지가 없습니다.'}</p>`;
+      return;
+    }
+    const isEn = currentUILang === 'en';
+    const catLabels = {
+      '전체공지': isEn ? 'General' : '전체공지',
+      '수업일정': isEn ? 'Schedule' : '수업일정',
+      '새교재': isEn ? 'New Material' : '새교재',
+      '토론회': isEn ? 'Debate' : '토론회',
+      '발표회': isEn ? 'Presentation' : '발표회'
+    };
+    const catClass = {
+      '전체공지': 'all', '수업일정': 'schedule', '새교재': 'new',
+      '토론회': 'schedule', '발표회': 'new'
+    };
+    list.innerHTML = filtered.map(n => `
+      <div class="notice-item" onclick="toggleNotice(${n.id})">
+        <div class="notice-header">
+          <span class="notice-cat cat-${catClass[n.category] || 'all'}">${catLabels[n.category] || n.category}</span>
+          <span class="notice-title">${isEn && n.title_en ? n.title_en : n.title}</span>
+          <span class="notice-date">${n.date}</span>
+          <span class="notice-arrow" id="arrow-${n.id}">▾</span>
+        </div>
+        <div class="notice-body" id="body-${n.id}">${isEn && n.body_en ? n.body_en : n.body}</div>
+      </div>
+    `).join('');
+  }
+
+  function toggleNotice(id) {
+    const body = document.getElementById('body-' + id);
+    const arrow = document.getElementById('arrow-' + id);
+    const open = body.classList.toggle('open');
+    arrow.textContent = open ? '▴' : '▾';
+  }
+
+  function switchNotice(tab, el) {
+    document.querySelectorAll('.notice-tab').forEach(t => t.classList.remove('active'));
+    el.classList.add('active');
+    renderNotices(tab);
+  }
+
+  /* ── CONTACT FORM ── */
+  function submitForm() {
+    const name = document.getElementById('f-name').value.trim();
+    const contact = document.getElementById('f-contact').value.trim();
+    if (!name || !contact) {
+      alert(currentUILang === 'en' ? 'Name and contact info are required.' : '이름과 연락처는 필수입니다.');
+      return;
+    }
+    // 실제 배포 시 Netlify Forms 또는 EmailJS 연결 가능
+    document.querySelector('.form-submit').style.display = 'none';
+    document.getElementById('form-sent').style.display = 'block';
+  }
+
+  /* ── INIT ── */
+  document.addEventListener('DOMContentLoaded', () => renderNotices('전체공지'));
+
+  /* ── i18n (전체 페이지 언어 전환) ── */
+  const I18N = {
+    ko: {
+      nav_programs: '프로그램', nav_notices: '공지사항', nav_library: '자료실', nav_contact: '문의하기',
+      hero_eyebrow: '말씀 위에 세워진 언어 교육',
+      hero_title: '성경으로 배우는<br>영어 · 한국어',
+      hero_sub: '유치원부터 중학교까지, 말씀을 통해 언어와 믿음을 함께 키워가는 그리스도 에듀케이션입니다.',
+      hero_btn1: '프로그램 보기', hero_btn2: '상담 신청',
+      sec_programs: '프로그램', sec_programs_sub: '학습자의 언어와 수준에 맞는 과정을 선택하세요.',
+      sec_notices: '공지사항', sec_notices_sub: '수업 일정, 새 교재, 토론회·발표회 소식을 확인하세요.',
+      sec_library: '자료실', sec_library_sub: '수업 교재 샘플과 학습 자료를 다운받으세요.',
+      sec_contact: '문의하기', sec_contact_sub: '수업 상담, 교재 문의 모두 환영합니다.',
+      ntab_all: '📢 전체', ntab_schedule: '📅 수업 일정', ntab_material: '📚 새 교재', ntab_debate: '🗣️ 토론회', ntab_present: '🎤 발표회',
+      ltab_all: '전체', ltab_en: '영어 학습', ltab_ko: '한국어 학습',
+      contact_info: '성경 말씀을 중심으로<br>영어와 한국어를 가르치는<br>소규모 믿음 기반 언어 교육 기관입니다.<br><br>',
+      contact_target_label: '대상', contact_target: '유치원 ~ 중학교',
+      contact_lang_label: '언어', contact_material_label: '교재',
+      contact_material: '자체 개발 성경 기반 교재',
+      contact_reply: '문의 주시면 빠르게 답변드리겠습니다.',
+      form_name: '이름', form_name_ph: '홍길동',
+      form_contact: '연락처 (전화 또는 카카오ID)',
+      form_course: '문의 과정', form_select: '선택해주세요',
+      form_group_en: '영어 학습', form_group_ko: '한국어 학습',
+      form_other: '기타 / 잘 모르겠어요',
+      form_grade: '학생 학년',
+      grade_pre: '유치원', grade_e1: '초등 1~2학년', grade_e2: '초등 3~4학년',
+      grade_e3: '초등 5~6학년', grade_m1: '중학교 1학년', grade_m2: '중학교 2학년',
+      grade_m3: '중학교 3학년 이상', grade_adult: '성인',
+      form_msg: '문의 내용 (선택)', form_msg_ph: '궁금한 점을 자유롭게 적어주세요.',
+      form_submit: '문의 보내기',
+      form_sent: '✅ 문의가 접수되었습니다. 곧 연락드리겠습니다!',
+      band_notice: '<strong>📦 밴드(Band) 자료 백업 안내</strong><br>기존 밴드에 올린 자료는 밴드 앱 → 파일 탭 → 각 파일 옆 <strong>···메뉴 → 저장</strong>으로 기기에 내려받을 수 있어요. 내려받은 파일은 이 자료실에 추가하거나 Google Drive에 보관하시면 영구 백업이 돼요.',
+      footer_bible: '성경 본문: WEB · KJV · 개역한글 1952 (Public Domain)',
+      footer_contact: '교재 문의 및 수업 상담은 위 양식을 이용해 주세요.',
+      bible_stmt_label: '📖 사용 성경 및 교육 철학',
+      bible_stmt_title: '그리스도 에듀케이션은 교단과 교파에 관계없이, 오직 성경 말씀을 중심으로 언어를 가르칩니다.',
+      bible_stmt_body: '본 교재에서 사용하는 모든 성경 본문은 저작권이 소멸된 공개 자료(Public Domain)만을 사용합니다.<br>· <strong style="color:#1A3A2A;">WEB (World English Bible)</strong> — 저작권 없음, 어느 교단에서도 자유롭게 사용 가능한 현대 영어 성경<br>· <strong style="color:#1A3A2A;">KJV (King James Version, 1611)</strong> — 전 세계 기독교에서 공인된 퍼블릭 도메인 영어 성경<br>· <strong style="color:#1A3A2A;">개역한글 (1952년판)</strong> — 저작권 만료, 한국 교회 전통 성경<br><br>특정 교단의 신학적 입장을 지지하거나 배타적으로 따르지 않습니다. 성경 본문 그 자체를 언어 학습의 토대로 삼으며, 모든 믿음의 가정과 학습자를 환영합니다.',
+      no_notice: '등록된 공지가 없습니다.',
+      hero_sub: '유치원부터 성인까지, 학생과 학부모·조부모 모두 함께 — 말씀을 통해 언어와 믿음을 키워가는 그리스도 에듀케이션입니다.',
+      en_intro: '유치원생부터 중·고등학생, 성인 일반인까지 — <strong>학생과 학부모·조부모님도 함께 참여</strong>하실 수 있습니다.<br>문법 · 리딩 · 라이팅 · 생활영어 · 논리사고력 · 내신대비까지 성경 말씀으로 함께 배워요.',
+      pt_phonics: '🔤 파닉스', pt_reading: '📖 리딩', pt_writing: '✍️ 라이팅',
+      pt_logic: '🧠 논리사고', pt_everyday: '💬 생활영어', pt_media: '🎬 미디어',
+      ph_p1: '알파벳과 소리의 관계를 성경 단어로 익혀요. 발음과 읽기의 첫걸음.',
+      ph_l1: '유치원 ~ 초1',
+      ph_p2: '파닉스 규칙을 익힌 후 성경 짧은 문장으로 읽기 확장. 발음 교정 포함.',
+      ph_l2: '초1 ~ 초2',
+      rd_p1: '성경 음식 이야기로 읽기·어휘·문장을 자연스럽게 배우는 리딩 과정.',
+      rd_l1: '초1 ~ 중2',
+      rd_p2: 'WEB 성경 예문으로 문법과 리딩을 함께. 약속처럼 자연스러운 문장 이해.',
+      rd_l2: '초3 ~ 중1',
+      rd_p3: '수능 지문 독해력을 성경 구문으로 키우는 집중 리딩 과정.',
+      rd_l3: '중2 ~ 고등',
+      wr_p1: '성경 문장을 따라 쓰며 영어 쓰기의 기초를 다져요. 문장 구조 자연스럽게 체득.',
+      wr_l1: '초2 ~ 초4',
+      wr_p2: '성경 주제로 나만의 단락을 써요. 논리적 글쓰기 훈련.',
+      wr_l2: '초5 ~ 중2',
+      wr_p3: '내신 서술형부터 에세이까지. 성경 예문으로 탄탄한 쓰기 실력.',
+      wr_l3: '중1 ~ 고등',
+      lg_p1: '성경 주제로 영어 토론. 논리적 사고력과 말하기를 동시에 키워요.',
+      lg_l1: '초4 ~ 중3',
+      lg_p2: '성경 이야기를 분석하고 생각을 영어로 표현하는 사고력 훈련.',
+      lg_l2: '초5 ~ 중2',
+      lg_p3: '성경 주제 발표회 준비. 자신감 있게 영어로 발표하는 능력 키우기.',
+      lg_l3: '초3 ~ 중3',
+      ev_p1: '일상 표현을 성경 맥락으로 배워요. 학생부터 성인·학부모·조부모님까지 함께 가능.',
+      ev_l1: '전 연령 · 성인 환영',
+      ev_p2: '영어 예배·설교 이해를 목표로. 영어 성경 읽기와 영어권 설교 듣기 훈련.',
+      ev_l2: '중급 이상 · 성인',
+      ev_p3: '학생과 학부모·조부모님이 함께하는 가족 영어 과정. 생활 속 영어 습관 만들기.',
+      ev_l3: '가족 · 전 연령',
+      md_p1: '선생님이 선별한 영어 영상·콘텐츠를 정기적으로 소개해요. 자료실 미디어 탭에서 확인하세요.',
+      md_l1: '전 연령',
+      md_p2: '추천 영상을 보고 수업 시간에 함께 이야기해요. 리딩·라이팅·토론으로 연결.',
+      md_l2: '초3 ~ 성인',
+      testi_label: '💬 학습 후기',
+      testi_title: '말씀으로 자란 영어, 삶을 바꾸다',
+      testi_sub: '실제 학습자와 학부모님의 이야기예요.',
+      testi_1_quote: '"2~3년 꾸준히 배우고 나니, 영어 예배에서 설교가 다 들려요. 영어 성경도 스스로 읽고, 미국 목사님 유튜브도 찾아 듣게 됐어요. 문법·리딩·라이팅이 다 연결되더니 내신 성적도 자연스럽게 올랐어요. 어릴 때 쌓은 게 이렇게 이어질 줄 몰랐어요."',
+      testi_1_who: '— 중학교 2학년 학생 학부모님',
+      testi_2_quote: '"처음엔 아이만 보내려고 했는데, 저도 같이 생활영어를 배우게 됐어요. 아이와 함께 영어로 짧은 대화를 나누고, 영어 성경 구절을 같이 읽는 게 이렇게 즐거울 줄 몰랐어요. 가족이 함께 자라는 느낌이에요."',
+      testi_2_who: '— 초등학교 4학년 학부모님',
+      en_p1_desc: '알파벳과 소리의 관계를 성경 단어로 익히는 파닉스 과정.',
+      en_p1_level: '유치원 ~ 초1',
+      en_p2_desc: '성경 음식 이야기로 읽기·어휘·문장을 자연스럽게 배우는 리딩 과정.',
+      en_p2_level: '초1 ~ 중2',
+      en_p3_title: 'Grammar (Book A)',
+      en_p3_desc: 'WEB 성경 예문으로 배우는 영문법. 약속처럼 쉽고 자연스럽게.',
+      en_p3_level: '초3 ~ 중1',
+      en_p4_title: 'CSAT Syntax 특강',
+      en_p4_desc: '수능 구문 120패턴을 성경 예문으로 정복하는 집중 과정.',
+      en_p4_level: '중2 ~ 고등',
+      ko_intro: '한국어를 처음 접하는 <strong>외국인</strong>, 한국어가 조금 낯설어진 <strong>교포</strong>,<br>한국 문화와 말씀에 관심 있는 <strong>성인</strong> — 모두 환영합니다 😊',
+      ko_p1_title: '한글 입문',
+      ko_p1_desc: '한글 자모부터 차근차근. 성경 단어로 읽기와 발음을 자연스럽게 익혀요. 한국어가 처음인 분께 딱 맞아요.',
+      ko_p1_level: '🌱 외국인 · 완전 초보',
+      ko_p2_desc: '성경 속 음식 이야기로 한국어 어휘와 문장을 배워요. 재미있게 읽다 보면 자연스럽게 실력이 늘어요.',
+      ko_p2_level: '🌿 외국인 · 교포 · 초급',
+      ko_p3_desc: '성경 예문으로 배우는 한국어 문법 130패턴. 어법이 헷갈리는 교포분들께도 큰 도움이 돼요.',
+      ko_p3_level: '🌳 교포 · 중급',
+      ko_p4_title: '회화 & 쓰기',
+      ko_p4_desc: '일상 표현부터 성경 문장까지, 실제로 말하고 쓰는 연습을 해요. 한국어로 더 깊이 소통하고 싶은 분께 추천해요.',
+      ko_p4_level: '🌲 성인 · 중급 이상',
+      lib_f1_sub: '영어 학습 · 초등 저학년 · 샘플 유닛',
+      lib_f2_title: '성경 음식 이야기 1과 – 에서의 팥죽',
+      lib_f2_sub: '한국어 학습 · 초급 · 샘플 유닛',
+      lib_f3_title: 'Bible Food Stories 전체 커리큘럼',
+      lib_f3_sub: '유치원 ~ 중학교 2학년 · 40유닛 계획표',
+      lib_dl: '다운로드 ↓',
+    },
+    en: {
+      nav_programs: 'Programs', nav_notices: 'Notices', nav_library: 'Resources', nav_contact: 'Contact',
+      hero_eyebrow: 'Language Education Built on the Word',
+      hero_title: 'Learn English & Korean<br>Through the Bible',
+      hero_sub: 'Christ Education offers faith-based language learning for all ages — from preschool to middle school, and adult learners worldwide.',
+      hero_btn1: 'View Programs', hero_btn2: 'Get in Touch',
+      sec_programs: 'Programs', sec_programs_sub: 'Choose the course that fits your language and level.',
+      sec_notices: 'Notices', sec_notices_sub: 'Check class schedules, new materials, debates & presentations.',
+      sec_library: 'Resources', sec_library_sub: 'Download sample textbooks and learning materials.',
+      sec_contact: 'Contact Us', sec_contact_sub: 'We welcome inquiries about lessons and materials.',
+      ntab_all: '📢 All', ntab_schedule: '📅 Schedule', ntab_material: '📚 New Materials', ntab_debate: '🗣️ Debate', ntab_present: '🎤 Presentation',
+      ltab_all: 'All', ltab_en: 'English Learning', ltab_ko: 'Korean Learning',
+      contact_info: 'A small, faith-based language education center<br>teaching English and Korean<br>through the Word of God.<br><br>',
+      contact_target_label: 'Students', contact_target: 'Preschool – Middle School',
+      contact_lang_label: 'Languages', contact_material_label: 'Materials',
+      contact_material: 'Original Bible-based curriculum',
+      contact_reply: 'We will get back to you as soon as possible.',
+      form_name: 'Full Name', form_name_ph: 'Your name',
+      form_contact: 'Phone or KakaoTalk ID',
+      form_course: 'Course Inquiry', form_select: 'Please select',
+      form_group_en: 'English Learning', form_group_ko: 'Korean Learning',
+      form_other: 'Other / Not sure yet',
+      form_grade: 'Student Grade',
+      grade_pre: 'Preschool', grade_e1: 'Grade 1–2', grade_e2: 'Grade 3–4',
+      grade_e3: 'Grade 5–6', grade_m1: 'Middle School Year 1', grade_m2: 'Middle School Year 2',
+      grade_m3: 'Middle School Year 3+', grade_adult: 'Adult',
+      form_msg: 'Message (optional)', form_msg_ph: 'Feel free to write any questions.',
+      form_submit: 'Send Inquiry',
+      form_sent: '✅ Your inquiry has been received. We will contact you soon!',
+      band_notice: '<strong>📦 Resource Backup Notice</strong><br>Materials previously shared on Band can be saved to your device via the Band app → Files tab → ··· menu → Save. Saved files can be uploaded here or stored in Google Drive for permanent backup.',
+      footer_bible: 'Scripture: WEB · KJV · Korean (1952) — Public Domain',
+      footer_contact: 'For lesson inquiries and consultation, please use the form above.',
+      bible_stmt_label: '📖 Scripture Used & Educational Philosophy',
+      bible_stmt_title: 'Christ Education teaches language through the Word of God — regardless of denomination or church affiliation.',
+      bible_stmt_body: 'All Scripture passages used in our materials are from Public Domain sources only.<br>· <strong style="color:#1A3A2A;">WEB (World English Bible)</strong> — Copyright-free modern English Bible, usable by any denomination<br>· <strong style="color:#1A3A2A;">KJV (King James Version, 1611)</strong> — Universally recognized public domain English Bible<br>· <strong style="color:#1A3A2A;">Korean Bible (1952 edition)</strong> — Copyright expired, traditional Korean church Bible<br><br>We do not advocate for or exclusively follow any particular denomination\'s theological position. The Bible text itself is the foundation of our language learning, and we welcome all learners and families of faith.',
+      no_notice: 'No notices available.',
+      hero_sub: 'From preschool to adults — students, parents, and grandparents all welcome. Christ Education grows language and faith together through the Word.',
+      en_intro: 'From preschool through high school and adult learners — <strong>parents and grandparents are welcome to join too.</strong><br>Grammar · Reading · Writing · Everyday English · Logic · Test Prep — all through the Bible.',
+      pt_phonics: '🔤 Phonics', pt_reading: '📖 Reading', pt_writing: '✍️ Writing',
+      pt_logic: '🧠 Logic', pt_everyday: '💬 Everyday', pt_media: '🎬 Media',
+      ph_p1: 'Learn letter-sound relationships through Bible words. The first step in reading and pronunciation.',
+      ph_l1: 'Preschool – Grade 1',
+      ph_p2: 'Expand reading with short Bible sentences after mastering phonics rules. Pronunciation correction included.',
+      ph_l2: 'Grade 1 – Grade 2',
+      rd_p1: 'A reading course using Bible food stories to build vocabulary and sentence skills naturally.',
+      rd_l1: 'Grade 1 – Middle School Yr 2',
+      rd_p2: 'Grammar and reading together through WEB Bible examples. Natural sentence comprehension.',
+      rd_l2: 'Grade 3 – Middle School Yr 1',
+      rd_p3: 'Build CSAT reading comprehension through Bible syntax patterns.',
+      rd_l3: 'Middle School Yr 2 – High School',
+      wr_p1: 'Copy Bible sentences to build writing foundations. Naturally absorb sentence structure.',
+      wr_l1: 'Grade 2 – Grade 4',
+      wr_p2: 'Write your own paragraphs on Bible themes. Train logical writing.',
+      wr_l2: 'Grade 5 – Middle School Yr 2',
+      wr_p3: 'From school test essays to full essays. Strong writing skills through Bible examples.',
+      wr_l3: 'Middle School Yr 1 – High School',
+      lg_p1: 'English debate using Bible topics. Develop logical thinking and speaking skills together.',
+      lg_l1: 'Grade 4 – Middle School Yr 3',
+      lg_p2: 'Analyze Bible stories and express your thoughts in English. Critical thinking training.',
+      lg_l2: 'Grade 5 – Middle School Yr 2',
+      lg_p3: 'Prepare for Bible-themed presentation events. Build confidence in English speaking.',
+      lg_l3: 'Grade 3 – Middle School Yr 3',
+      ev_p1: 'Learn everyday expressions through a Biblical context. Open to students, adults, parents, and grandparents.',
+      ev_l1: 'All Ages · Adults Welcome',
+      ev_p2: 'Focused on understanding English worship and sermons. Train listening with English Bible reading.',
+      ev_l2: 'Intermediate+ · Adults',
+      ev_p3: 'A family English course for students and parents/grandparents together. Build English habits in daily life.',
+      ev_l3: 'Family · All Ages',
+      md_p1: "Teacher-selected English videos and content introduced regularly. Check the Resources section's Media tab.",
+      md_l1: 'All Ages',
+      md_p2: 'Watch recommended videos, then discuss in class. Connected to reading, writing, and debate.',
+      md_l2: 'Grade 3 – Adult',
+      testi_label: '💬 Student Reviews',
+      testi_title: 'English grown through the Word, changing lives',
+      testi_sub: 'Stories from real learners and parents.',
+      testi_1_quote: '"After 2–3 years of steady learning, I could understand the entire English worship service. I started reading the English Bible on my own and watching American pastors on YouTube. Grammar, reading, and writing all came together — and my school grades improved naturally. I had no idea what I built as a child would carry me this far."',
+      testi_1_who: '— Parent of a Middle School Year 2 student',
+      testi_2_quote: '"I originally enrolled my child, but ended up learning Everyday English alongside them. Sharing short English conversations and reading Bible verses together as a family — I never expected it to be this joyful. It feels like we\'re growing together."',
+      testi_2_who: '— Parent of a Grade 4 student',
+      en_p1_desc: 'Learn the relationship between letters and sounds using Bible words — a perfect phonics foundation.',
+      en_p1_level: 'Preschool – Grade 1',
+      en_p2_desc: 'A reading course using Bible food stories to build vocabulary and sentence skills naturally.',
+      en_p2_level: 'Grade 1 – Middle School Yr 2',
+      en_p3_title: 'Grammar (Book A)',
+      en_p3_desc: 'English grammar taught through WEB Bible examples. Rules feel like natural promises, not memorization.',
+      en_p3_level: 'Grade 3 – Middle School Yr 1',
+      en_p4_title: 'CSAT Syntax Intensive',
+      en_p4_desc: 'Master 120 Korean CSAT syntax patterns using Bible examples in an intensive prep course.',
+      en_p4_level: 'Middle School Yr 2 – High School',
+      ko_intro: 'For <strong>foreigners</strong> new to Korean, <strong>heritage speakers</strong> who feel a little rusty,<br>and <strong>adults</strong> curious about Korean culture and the Word — all are welcome 😊',
+      ko_p1_title: 'Hangeul Basics',
+      ko_p1_desc: 'Start from the very beginning — learn to read and pronounce Korean using Bible words. Perfect for absolute beginners.',
+      ko_p1_level: '🌱 Foreigners · Absolute Beginner',
+      ko_p2_desc: 'Build Korean vocabulary and sentence patterns through Bible food stories. Fun reading that naturally grows your skills.',
+      ko_p2_level: '🌿 Foreigners · Heritage Speakers · Beginner',
+      ko_p3_desc: '130 core Korean grammar patterns taught through Bible examples. Especially helpful for heritage speakers who feel unsure about grammar.',
+      ko_p3_level: '🌳 Heritage Speakers · Intermediate',
+      ko_p4_title: 'Conversation & Writing',
+      ko_p4_desc: 'Practice real speaking and writing using everyday expressions and Bible sentences. For those who want to communicate more deeply in Korean.',
+      ko_p4_level: '🌲 Adults · Intermediate+',
+      lib_f1_sub: 'English Learning · Lower Elementary · Sample Unit',
+      lib_f2_title: 'Bible Food Stories Unit 1 – Esau\'s Red Stew (KR)',
+      lib_f2_sub: 'Korean Learning · Beginner · Sample Unit',
+      lib_f3_title: 'Bible Food Stories Full Curriculum',
+      lib_f3_sub: 'Preschool – Middle School Yr 2 · 40-Unit Plan',
+      lib_dl: 'Download ↓',
+    }
+  };
+
+  let currentUILang = 'ko';
+
+  function setLangUI(lang) {
+    currentUILang = lang;
+    // switcher buttons
+    document.querySelectorAll('.lang-switcher button').forEach((btn, i) => {
+      btn.classList.toggle('active', (lang === 'ko' && i === 0) || (lang === 'en' && i === 1));
+    });
+    // all data-i18n elements
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const key = el.getAttribute('data-i18n');
+      if (I18N[lang][key] !== undefined) el.innerHTML = I18N[lang][key];
+    });
+    // placeholder attributes
+    document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+      const key = el.getAttribute('data-i18n-placeholder');
+      if (I18N[lang][key]) el.placeholder = I18N[lang][key];
+    });
+    // optgroup labels
+    document.querySelectorAll('[data-i18n-label]').forEach(el => {
+      const key = el.getAttribute('data-i18n-label');
+      if (I18N[lang][key]) el.label = I18N[lang][key];
+    });
+    document.documentElement.lang = lang;
+    // re-render notices in new language
+    const activeTab = document.querySelector('.notice-tab.active');
+    if (activeTab) {
+      const tabKey = activeTab.getAttribute('data-i18n');
+      const catMap = {
+        ntab_all: '전체공지', ntab_schedule: '수업일정', ntab_material: '새교재',
+        ntab_debate: '토론회', ntab_present: '발표회'
+      };
+      renderNotices(catMap[tabKey] || '전체공지');
+    }
+  }
+
+  /* ── SMOOTH SCROLL ── */
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      e.preventDefault();
+      const target = document.querySelector(a.getAttribute('href'));
+      if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      document.querySelectorAll('.nav-links a').forEach(l => l.classList.remove('active'));
+      a.classList.add('active');
+    });
+  });
+</script>
+<!-- ADMIN BUTTON -->
+<button class="admin-btn" onclick="openAdmin()">🔐 관리자</button>
+
+<!-- ADMIN OVERLAY -->
+<div class="admin-overlay" id="adminOverlay">
+  <div class="admin-box" id="adminBox">
+
+    <!-- LOGIN -->
+    <div id="adminLogin">
+      <div class="admin-login">
+        <h2>🔐 관리자 로그인</h2>
+        <input type="password" id="adminPw" placeholder="비밀번호를 입력하세요" onkeydown="if(event.key==='Enter')checkLogin()">
+        <button onclick="checkLogin()">로그인</button>
+        <p class="admin-msg" id="loginMsg"></p>
+        <button style="background:none;border:none;cursor:pointer;font-size:13px;color:var(--muted);margin-top:4px;" onclick="closeAdmin()">취소</button>
+      </div>
+    </div>
+
+    <!-- PANEL (hidden until login) -->
+    <div id="adminPanel" style="display:none;">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:24px;">
+        <h2 style="margin:0;">⚙️ 관리자 패널</h2>
+        <div style="display:flex;gap:8px;">
+          <button class="admin-action-btn btn-close" onclick="adminLogout()">로그아웃</button>
+          <button class="admin-action-btn btn-close" onclick="closeAdmin()">닫기 ✕</button>
+        </div>
+      </div>
+
+      <!-- 공지 추가 -->
+      <div class="admin-section">
+        <h3>📢 새 공지 작성</h3>
+        <div class="admin-row">
+          <label>카테고리</label>
+          <select id="new-cat">
+            <option value="전체공지">📢 전체공지</option>
+            <option value="수업일정">📅 수업일정</option>
+            <option value="새교재">📚 새교재</option>
+            <option value="토론회">🗣️ 토론회</option>
+            <option value="발표회">🎤 발표회</option>
+          </select>
+        </div>
+        <div class="admin-row">
+          <label>날짜</label>
+          <input type="text" id="new-date" placeholder="2026.06.22">
+        </div>
+        <div class="admin-row">
+          <label>제목 (한국어)</label>
+          <input type="text" id="new-title" placeholder="공지 제목">
+        </div>
+        <div class="admin-row">
+          <label>내용 (한국어)</label>
+          <textarea id="new-body" rows="3" placeholder="공지 내용을 입력하세요."></textarea>
+        </div>
+        <div class="admin-row">
+          <label>제목 (English)</label>
+          <input type="text" id="new-title-en" placeholder="English title">
+        </div>
+        <div class="admin-row">
+          <label>내용 (English)</label>
+          <textarea id="new-body-en" rows="3" placeholder="English content"></textarea>
+        </div>
+        <div class="admin-btn-row">
+          <button class="admin-action-btn btn-add" onclick="addNotice()">✚ 공지 추가</button>
+        </div>
+        <p class="admin-msg" id="addMsg" style="margin-top:8px;"></p>
+      </div>
+
+      <!-- 공지 목록 -->
+      <div class="admin-section">
+        <h3>📋 현재 공지 목록 (삭제)</h3>
+        <div class="admin-notice-list" id="adminNoticeList"></div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script>
+  /* ── ADMIN ── */
+  const ADMIN_PW = 'wfe2026'; // ← 비밀번호 여기서 바꾸세요
+
+  function openAdmin() {
+    document.getElementById('adminOverlay').classList.add('open');
+    document.getElementById('adminLogin').style.display = 'block';
+    document.getElementById('adminPanel').style.display = 'none';
+    document.getElementById('adminPw').value = '';
+    document.getElementById('loginMsg').textContent = '';
+  }
+
+  function closeAdmin() {
+    document.getElementById('adminOverlay').classList.remove('open');
+  }
+
+  function checkLogin() {
+    const pw = document.getElementById('adminPw').value;
+    if (pw === ADMIN_PW) {
+      document.getElementById('adminLogin').style.display = 'none';
+      document.getElementById('adminPanel').style.display = 'block';
+      renderAdminNoticeList();
+      // set today's date
+      const today = new Date();
+      const d = `${today.getFullYear()}.${String(today.getMonth()+1).padStart(2,'0')}.${String(today.getDate()).padStart(2,'0')}`;
+      document.getElementById('new-date').value = d;
+    } else {
+      document.getElementById('loginMsg').textContent = '❌ 비밀번호가 틀렸습니다.';
+    }
+  }
+
+  function adminLogout() {
+    document.getElementById('adminLogin').style.display = 'block';
+    document.getElementById('adminPanel').style.display = 'none';
+    document.getElementById('adminPw').value = '';
+  }
+
+  function addNotice() {
+    const title = document.getElementById('new-title').value.trim();
+    const body = document.getElementById('new-body').value.trim();
+    const date = document.getElementById('new-date').value.trim();
+    const cat = document.getElementById('new-cat').value;
+    const title_en = document.getElementById('new-title-en').value.trim();
+    const body_en = document.getElementById('new-body-en').value.trim();
+
+    if (!title || !body || !date) {
+      document.getElementById('addMsg').textContent = '❌ 날짜·제목·내용은 필수입니다.';
+      return;
+    }
+
+    const newId = NOTICES.length > 0 ? Math.max(...NOTICES.map(n => n.id)) + 1 : 1;
+    NOTICES.unshift({ id: newId, category: cat, date, title, body, title_en: title_en || title, body_en: body_en || body });
+
+    // clear form
+    ['new-title','new-body','new-title-en','new-body-en'].forEach(id => document.getElementById(id).value = '');
+    document.getElementById('addMsg').textContent = '✅ 공지가 추가되었습니다!';
+    setTimeout(() => document.getElementById('addMsg').textContent = '', 3000);
+
+    renderAdminNoticeList();
+    renderNotices('전체공지');
+    // reset notice tabs to 전체
+    document.querySelectorAll('.notice-tab').forEach((t,i) => t.classList.toggle('active', i===0));
+  }
+
+  function deleteNotice(id) {
+    if (!confirm('이 공지를 삭제할까요?')) return;
+    const idx = NOTICES.findIndex(n => n.id === id);
+    if (idx > -1) NOTICES.splice(idx, 1);
+    renderAdminNoticeList();
+    renderNotices('전체공지');
+    document.querySelectorAll('.notice-tab').forEach((t,i) => t.classList.toggle('active', i===0));
+  }
+
+  function renderAdminNoticeList() {
+    const list = document.getElementById('adminNoticeList');
+    if (NOTICES.length === 0) {
+      list.innerHTML = '<p style="font-size:13px;color:var(--muted);">공지가 없습니다.</p>';
+      return;
+    }
+    list.innerHTML = NOTICES.map(n => `
+      <div class="admin-notice-item">
+        <span><strong>[${n.category}]</strong> ${n.date} — ${n.title}</span>
+        <button onclick="deleteNotice(${n.id})">삭제 ✕</button>
+      </div>
+    `).join('');
+  }
+
+  // close overlay on background click
+  document.getElementById('adminOverlay').addEventListener('click', function(e) {
+    if (e.target === this) closeAdmin();
+  });
+</script>
+
+</body>
+</html>

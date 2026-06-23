@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bible Food Stories – Unit 1: Esau's Red Stew</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700;800&display=swap');
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Nunito', sans-serif;
+    background: #FFF8EE;
+    color: #3A2E22;
+    min-height: 100vh;
+  }
+
+  /* ── PAGE WRAPPER ── */
+  .page {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 32px 24px 60px;
+  }
+
+  /* ── UNIT BADGE ── */
+  .unit-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #C0392B;
+    color: #fff;
+    font-family: 'Fredoka One', sans-serif;
+    font-size: 14px;
+    letter-spacing: 1px;
+    padding: 6px 16px;
+    border-radius: 999px;
+    margin-bottom: 20px;
+  }
+
+  /* ── TITLE BLOCK ── */
+  .title-block {
+    margin-bottom: 28px;
+  }
+  .title-block h1 {
+    font-family: 'Fredoka One', sans-serif;
+    font-size: 38px;
+    line-height: 1.15;
+    color: #C0392B;
+  }
+  .title-block .subtitle {
+    font-size: 15px;
+    color: #7A6652;
+    margin-top: 6px;
+  }
+  .title-block .ref {
+    display: inline-block;
+    margin-top: 8px;
+    background: #FDE8C8;
+    border-left: 3px solid #E8A040;
+    padding: 6px 12px;
+    font-size: 13px;
+    color: #7A5020;
+    border-radius: 0 6px 6px 0;
+    font-style: italic;
+  }
+
+  /* ── SCENE ILLUSTRATION PLACEHOLDER ── */
+  .scene {
+    width: 100%;
+    height: 180px;
+    background: linear-gradient(135deg, #F9C07A 0%, #E8854A 60%, #C0392B 100%);
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 28px;
+    position: relative;
+    overflow: hidden;
+  }
+  .scene-emoji {
+    font-size: 72px;
+    filter: drop-shadow(0 4px 8px rgba(0,0,0,0.18));
+  }
+  .scene-label {
+    position: absolute;
+    bottom: 12px;
+    right: 16px;
+    font-size: 12px;
+    color: rgba(255,255,255,0.85);
+    font-style: italic;
+  }
+
+  /* ── STORY CARD ── */
+  .story-card {
+    background: #fff;
+    border-radius: 16px;
+    padding: 24px 28px;
+    margin-bottom: 28px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+    border-top: 4px solid #C0392B;
+  }
+  .section-label {
+    font-family: 'Fredoka One', sans-serif;
+    font-size: 13px;
+    letter-spacing: 1.5px;
+    color: #C0392B;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+  .story-card p {
+    font-size: 16px;
+    line-height: 1.85;
+    color: #3A2E22;
+  }
+  .story-card p + p {
+    margin-top: 12px;
+  }
+  .highlight {
+    background: #FDE8C8;
+    border-radius: 4px;
+    padding: 1px 4px;
+    font-weight: 700;
+    color: #A03010;
+  }
+
+  /* ── WORD BOX ── */
+  .word-section {
+    margin-bottom: 28px;
+  }
+  .word-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    margin-top: 12px;
+  }
+  .word-card {
+    background: #fff;
+    border-radius: 12px;
+    padding: 14px 16px;
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    border: 1.5px solid #F0E0C8;
+  }
+  .word-emoji {
+    font-size: 28px;
+    flex-shrink: 0;
+    line-height: 1;
+  }
+  .word-info strong {
+    display: block;
+    font-size: 15px;
+    font-weight: 800;
+    color: #C0392B;
+  }
+  .word-info span {
+    font-size: 13px;
+    color: #7A6652;
+    line-height: 1.4;
+  }
+
+  /* ── DIVIDER ── */
+  .divider {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 32px 0 24px;
+  }
+  .divider::before, .divider::after {
+    content: '';
+    flex: 1;
+    height: 1.5px;
+    background: #E8D8C0;
+  }
+  .divider span {
+    font-family: 'Fredoka One', sans-serif;
+    font-size: 13px;
+    color: #B08060;
+    letter-spacing: 1px;
+    white-space: nowrap;
+  }
+
+  /* ── EXERCISE CARD ── */
+  .exercise {
+    background: #fff;
+    border-radius: 16px;
+    padding: 24px 28px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+  }
+  .exercise-type {
+    display: inline-block;
+    background: #FDE8C8;
+    color: #A03010;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 3px 10px;
+    border-radius: 999px;
+    margin-bottom: 12px;
+  }
+  .exercise h3 {
+    font-size: 15px;
+    font-weight: 800;
+    margin-bottom: 16px;
+    color: #3A2E22;
+  }
+
+  /* multiple choice */
+  .mc-question {
+    margin-bottom: 20px;
+  }
+  .mc-question p {
+    font-size: 15px;
+    font-weight: 700;
+    margin-bottom: 10px;
+    line-height: 1.5;
+  }
+  .options {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .option {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 14px;
+    border: 2px solid #E8D8C0;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: border-color 0.15s, background 0.15s;
+    font-size: 14px;
+    background: #FDFAF6;
+    user-select: none;
+  }
+  .option:hover { border-color: #E8A040; background: #FEF4E4; }
+  .option.selected { border-color: #C0392B; background: #FDE8C8; }
+  .option.correct { border-color: #27AE60; background: #E8F8EE; }
+  .option.wrong { border-color: #C0392B; background: #FDE8C8; }
+  .option-letter {
+    width: 24px; height: 24px;
+    border-radius: 50%;
+    background: #E8D8C0;
+    color: #7A5020;
+    font-weight: 800;
+    font-size: 12px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    transition: background 0.15s;
+  }
+  .option.selected .option-letter { background: #C0392B; color: #fff; }
+  .option.correct .option-letter { background: #27AE60; color: #fff; }
+
+  /* fill in blank */
+  .blank-sentence {
+    font-size: 16px;
+    line-height: 2.2;
+    margin-bottom: 16px;
+  }
+  .blank {
+    display: inline-block;
+    min-width: 120px;
+    border-bottom: 2.5px solid #C0392B;
+    margin: 0 4px;
+    text-align: center;
+    padding: 0 8px;
+    font-weight: 700;
+    color: #C0392B;
+  }
+  .word-bank {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 8px;
+  }
+  .word-chip {
+    background: #FDE8C8;
+    border: 1.5px dashed #E8A040;
+    color: #A03010;
+    font-size: 13px;
+    font-weight: 700;
+    padding: 5px 14px;
+    border-radius: 999px;
+    cursor: pointer;
+    transition: background 0.15s;
+  }
+  .word-chip:hover { background: #FAD4A0; }
+  .word-chip.used { opacity: 0.35; pointer-events: none; text-decoration: line-through; }
+
+  /* ── CHECK BUTTON ── */
+  .check-btn {
+    margin-top: 20px;
+    background: #C0392B;
+    color: #fff;
+    border: none;
+    font-family: 'Fredoka One', sans-serif;
+    font-size: 17px;
+    padding: 12px 32px;
+    border-radius: 999px;
+    cursor: pointer;
+    transition: background 0.15s, transform 0.1s;
+    display: block;
+  }
+  .check-btn:hover { background: #A03020; transform: translateY(-1px); }
+
+  /* ── RESULT ── */
+  .result-box {
+    margin-top: 16px;
+    padding: 12px 16px;
+    border-radius: 10px;
+    font-weight: 700;
+    font-size: 15px;
+    display: none;
+  }
+  .result-box.show { display: block; }
+  .result-box.good { background: #E8F8EE; color: #1A7040; }
+  .result-box.retry { background: #FDE8C8; color: #A03010; }
+
+  /* ── THINK DEEPER ── */
+  .think {
+    background: linear-gradient(135deg, #FFF3DC, #FDE8C8);
+    border-left: 4px solid #E8A040;
+    border-radius: 0 12px 12px 0;
+    padding: 18px 20px;
+    margin-top: 28px;
+    font-size: 15px;
+    line-height: 1.7;
+    color: #5A3A10;
+  }
+  .think strong { display: block; margin-bottom: 6px; font-size: 14px; color: #A07030; letter-spacing: 0.5px; }
+
+  /* ── FOOTER ── */
+  .footer {
+    text-align: center;
+    margin-top: 48px;
+    font-size: 12px;
+    color: #B09070;
+  }
+  .footer img { height: 16px; vertical-align: middle; margin-right: 4px; }
+
+  @media (max-width: 480px) {
+    .word-grid { grid-template-columns: 1fr; }
+    .title-block h1 { font-size: 30px; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- UNIT BADGE -->
+  <div class="unit-badge">🍲 UNIT 1</div>
+
+  <!-- TITLE -->
+  <div class="title-block">
+    <h1>Esau's Red Stew</h1>
+    <p class="subtitle">A bowl of soup that changed everything</p>
+    <span class="ref">Genesis 25:29–34 (WEB)</span>
+  </div>
+
+  <!-- SCENE -->
+  <div class="scene">
+    <span class="scene-emoji">🍲</span>
+    <span class="scene-label">Jacob's camp, long ago…</span>
+  </div>
+
+  <!-- STORY -->
+  <div class="story-card">
+    <div class="section-label">📖 Read the Story</div>
+    <p>
+      One day, Jacob was cooking a big pot of <span class="highlight">lentil stew</span>.
+      The stew was red and hot, and it smelled wonderful.
+    </p>
+    <p>
+      His brother Esau came home very <span class="highlight">tired</span> and <span class="highlight">hungry</span> from the field.
+      Esau said, "Please give me some of that red stew! I am so hungry!"
+    </p>
+    <p>
+      Jacob said, "I will give it to you — but first, sell me your <span class="highlight">birthright</span>."
+    </p>
+    <p>
+      Esau said, "I am about to die of hunger! What good is a birthright to me?"
+      So Esau ate the bread and the lentil stew.
+      He got up and left. He didn't care about his birthright anymore.
+    </p>
+  </div>
+
+  <!-- WORD BOX -->
+  <div class="word-section">
+    <div class="section-label">🍽️ Today's Food Words</div>
+    <div class="word-grid">
+      <div class="word-card">
+        <span class="word-emoji">🫘</span>
+        <div class="word-info">
+          <strong>lentil</strong>
+          <span>A small, round seed used to make soup. Very filling!</span>
+        </div>
+      </div>
+      <div class="word-card">
+        <span class="word-emoji">🍲</span>
+        <div class="word-info">
+          <strong>stew</strong>
+          <span>A hot dish with vegetables and/or meat, cooked slowly.</span>
+        </div>
+      </div>
+      <div class="word-card">
+        <span class="word-emoji">🍞</span>
+        <div class="word-info">
+          <strong>bread</strong>
+          <span>Esau ate bread with his stew. A common food in the Bible.</span>
+        </div>
+      </div>
+      <div class="word-card">
+        <span class="word-emoji">🔥</span>
+        <div class="word-info">
+          <strong>hungry</strong>
+          <span>Feeling like you really need to eat. Esau was very hungry!</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"><span>✏️ LET'S PRACTICE</span></div>
+
+  <!-- EXERCISE 1 — Multiple Choice -->
+  <div class="exercise" id="ex1">
+    <span class="exercise-type">Multiple Choice</span>
+    <h3>Choose the best answer.</h3>
+
+    <div class="mc-question">
+      <p>1. What was Jacob cooking?</p>
+      <div class="options" data-answer="b">
+        <div class="option" onclick="pickOption(this)"><span class="option-letter">A</span> Fish soup</div>
+        <div class="option" onclick="pickOption(this)"><span class="option-letter">B</span> Lentil stew</div>
+        <div class="option" onclick="pickOption(this)"><span class="option-letter">C</span> Bread and honey</div>
+      </div>
+    </div>
+
+    <div class="mc-question">
+      <p>2. Why did Esau want the stew?</p>
+      <div class="options" data-answer="c">
+        <div class="option" onclick="pickOption(this)"><span class="option-letter">A</span> He just wanted to taste it.</div>
+        <div class="option" onclick="pickOption(this)"><span class="option-letter">B</span> He loved lentils.</div>
+        <div class="option" onclick="pickOption(this)"><span class="option-letter">C</span> He was very tired and hungry.</div>
+      </div>
+    </div>
+
+    <div class="mc-question">
+      <p>3. What did Jacob ask for in return?</p>
+      <div class="options" data-answer="a">
+        <div class="option" onclick="pickOption(this)"><span class="option-letter">A</span> Esau's birthright</div>
+        <div class="option" onclick="pickOption(this)"><span class="option-letter">B</span> A farm animal</div>
+        <div class="option" onclick="pickOption(this)"><span class="option-letter">C</span> A big bag of lentils</div>
+      </div>
+    </div>
+
+    <button class="check-btn" onclick="checkMC()">Check My Answers ✔</button>
+    <div class="result-box" id="mc-result"></div>
+  </div>
+
+  <!-- EXERCISE 2 — Fill in the Blank -->
+  <div class="exercise" id="ex2">
+    <span class="exercise-type">Fill in the Blank</span>
+    <h3>Use the words below to complete the sentences.</h3>
+
+    <div class="blank-sentence">
+      1. Jacob was cooking a pot of <span class="blank" id="b1" onclick="fillBlank('b1', 'lentil stew')"></span>.
+    </div>
+    <div class="blank-sentence">
+      2. Esau was very <span class="blank" id="b2" onclick="fillBlank('b2', 'hungry')"></span> after working in the field.
+    </div>
+    <div class="blank-sentence">
+      3. Esau sold his <span class="blank" id="b3" onclick="fillBlank('b3', 'birthright')"></span> for a bowl of soup.
+    </div>
+    <div class="blank-sentence">
+      4. The stew was the color <span class="blank" id="b4" onclick="fillBlank('b4', 'red')"></span>.
+    </div>
+
+    <div class="word-bank" id="wordBank">
+      <span class="word-chip" data-word="lentil stew" onclick="fillFromBank(this)">lentil stew</span>
+      <span class="word-chip" data-word="hungry" onclick="fillFromBank(this)">hungry</span>
+      <span class="word-chip" data-word="birthright" onclick="fillFromBank(this)">birthright</span>
+      <span class="word-chip" data-word="red" onclick="fillFromBank(this)">red</span>
+    </div>
+
+    <button class="check-btn" onclick="checkBlanks()">Check My Answers ✔</button>
+    <div class="result-box" id="blank-result"></div>
+  </div>
+
+  <!-- THINK DEEPER -->
+  <div class="think">
+    <strong>💬 Think About It</strong>
+    Esau was so hungry that he traded something very important for a bowl of soup.
+    Have you ever made a quick decision because you were tired or hungry?
+    What do you think Esau should have done?
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    Word &amp; Faith Education · Bible Food Stories · Unit 1<br>
+    Scripture: WEB (World English Bible) — Public Domain
+  </div>
+
+</div>
+
+<script>
+  /* ── MULTIPLE CHOICE ── */
+  function pickOption(el) {
+    const group = el.closest('.options');
+    group.querySelectorAll('.option').forEach(o => o.classList.remove('selected'));
+    el.classList.add('selected');
+  }
+
+  function checkMC() {
+    const questions = document.querySelectorAll('#ex1 .mc-question');
+    const answerMap = { 'a': 0, 'b': 1, 'c': 2 };
+    let correct = 0;
+    questions.forEach(q => {
+      const options = q.querySelectorAll('.option');
+      const correctIdx = answerMap[q.querySelector('.options').dataset.answer];
+      options.forEach((o, i) => {
+        o.classList.remove('correct', 'wrong', 'selected');
+        if (i === correctIdx) o.classList.add('correct');
+        else if (o.classList.contains('selected') || false) o.classList.add('wrong');
+      });
+      // mark selected
+      const selected = q.querySelector('.option.selected');
+      if (!selected) return;
+      const selectedIdx = Array.from(options).indexOf(selected);
+      if (selectedIdx === correctIdx) { correct++; selected.classList.add('correct'); }
+      else { selected.classList.add('wrong'); }
+    });
+    // re-run to mark selected after clearing
+    questions.forEach(q => {
+      const options = q.querySelectorAll('.option');
+      const correctIdx = answerMap[q.querySelector('.options').dataset.answer];
+    });
+
+    const box = document.getElementById('mc-result');
+    box.classList.add('show');
+    if (correct === 3) {
+      box.className = 'result-box show good';
+      box.textContent = '🎉 Perfect! All 3 correct! Great reading!';
+    } else {
+      box.className = 'result-box show retry';
+      box.textContent = `You got ${correct}/3. The correct answers are highlighted in green. Try again!`;
+    }
+  }
+
+  /* ── FILL IN THE BLANK ── */
+  const blankAnswers = { b1: 'lentil stew', b2: 'hungry', b3: 'birthright', b4: 'red' };
+  const blankFilled = { b1: null, b2: null, b3: null, b4: null };
+
+  function fillFromBank(chip) {
+    const word = chip.dataset.word;
+    // find empty blank with matching answer
+    for (const [id, ans] of Object.entries(blankAnswers)) {
+      if (ans === word && blankFilled[id] === null) {
+        blankFilled[id] = word;
+        document.getElementById(id).textContent = word;
+        chip.classList.add('used');
+        return;
+      }
+    }
+  }
+
+  function fillBlank(id, word) {
+    // clicking blank clears it and returns word to bank
+    if (blankFilled[id]) {
+      const word = blankFilled[id];
+      blankFilled[id] = null;
+      document.getElementById(id).textContent = '';
+      // re-enable chip
+      document.querySelectorAll('.word-chip').forEach(c => {
+        if (c.dataset.word === word) c.classList.remove('used');
+      });
+    }
+  }
+
+  function checkBlanks() {
+    let correct = 0;
+    for (const [id, ans] of Object.entries(blankAnswers)) {
+      const el = document.getElementById(id);
+      if (blankFilled[id] === ans) {
+        correct++;
+        el.style.color = '#27AE60';
+        el.style.borderColor = '#27AE60';
+      } else {
+        el.style.color = '#C0392B';
+        el.style.borderColor = '#C0392B';
+      }
+    }
+    const box = document.getElementById('blank-result');
+    box.classList.add('show');
+    if (correct === 4) {
+      box.className = 'result-box show good';
+      box.textContent = '🎉 All correct! You remembered every word!';
+    } else {
+      box.className = 'result-box show retry';
+      box.textContent = `${correct}/4 correct. Tap a word from the bank and try again!`;
+    }
+  }
+</script>
+</body>
+</html>
