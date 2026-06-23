@@ -1,0 +1,67 @@
+backend:
+  name: git-gateway
+  branch: main
+
+locale: ko
+
+media_folder: "uploads"
+public_folder: "/uploads"
+
+collections:
+  - name: "notices"
+    label: "📢 공지사항"
+    folder: "_notices"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
+      - { label: "제목 (한국어)", name: "title", widget: "string" }
+      - { label: "제목 (English)", name: "title_en", widget: "string", required: false }
+      - { label: "카테고리", name: "category", widget: "select", options: ["전체공지", "수업일정", "새교재", "토론회", "발표회"] }
+      - { label: "날짜", name: "date", widget: "datetime", format: "YYYY.MM.DD" }
+      - { label: "내용 (한국어)", name: "body", widget: "text" }
+      - { label: "내용 (English)", name: "body_en", widget: "text", required: false }
+
+  - name: "resources"
+    label: "📚 자료실"
+    folder: "_resources"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "파일 제목 (한국어)", name: "title", widget: "string" }
+      - { label: "파일 제목 (English)", name: "title_en", widget: "string", required: false }
+      - { label: "설명 (한국어)", name: "desc", widget: "string" }
+      - { label: "설명 (English)", name: "desc_en", widget: "string", required: false }
+      - { label: "카테고리", name: "category", widget: "select", options: ["전체", "영어 학습", "한국어 학습"] }
+      - { label: "파일 업로드", name: "file", widget: "file" }
+
+  - name: "programs"
+    label: "🎓 프로그램 안내"
+    folder: "_programs"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "프로그램명 (한국어)", name: "title", widget: "string" }
+      - { label: "프로그램명 (English)", name: "title_en", widget: "string", required: false }
+      - { label: "언어", name: "lang", widget: "select", options: ["영어", "한국어"] }
+      - { label: "탭", name: "tab", widget: "select", options: ["phonics", "reading", "writing", "logic", "everyday", "media"] }
+      - { label: "설명 (한국어)", name: "desc", widget: "text" }
+      - { label: "설명 (English)", name: "desc_en", widget: "text", required: false }
+      - { label: "대상 학년 (한국어)", name: "level", widget: "string" }
+      - { label: "대상 학년 (English)", name: "level_en", widget: "string", required: false }
+      - { label: "아이콘 (이모지)", name: "icon", widget: "string" }
+
+  - name: "settings"
+    label: "⚙️ 사이트 설정"
+    files:
+      - label: "홈페이지 문구"
+        name: "homepage"
+        file: "_settings/homepage.yml"
+        fields:
+          - { label: "히어로 제목 (한국어)", name: "hero_title_ko", widget: "string" }
+          - { label: "히어로 제목 (English)", name: "hero_title_en", widget: "string" }
+          - { label: "히어로 설명 (한국어)", name: "hero_sub_ko", widget: "text" }
+          - { label: "히어로 설명 (English)", name: "hero_sub_en", widget: "text" }
+          - { label: "학습 후기 1 (한국어)", name: "testi1_ko", widget: "text" }
+          - { label: "학습 후기 1 (English)", name: "testi1_en", widget: "text" }
+          - { label: "학습 후기 2 (한국어)", name: "testi2_ko", widget: "text" }
+          - { label: "학습 후기 2 (English)", name: "testi2_en", widget: "text" }
